@@ -1,0 +1,104 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<style>
+    table.form th {
+        height: 25px;
+        text-align: center;
+        background: #edf3f7;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #navs{ background:url(__TMPL__Common/images/navbgs.png) 0px 24px repeat-x; height:28px; position:relative;}
+    #navs ul{position:absolute;  }
+    #navs ul li{ float:left; display:inline; padding:0px 5px; width:90px; }
+
+    #navs a.show{ display:block; background:#4E6A81 0px 0px repeat-x; color:#fff;  padding:0px 10px;text-align:center; text-decoration:none; line-height:25px; height:28px; font-weight:bold; }
+    #navs a.show.current{  color:#fff; background:#8EA7BB repeat-x; line-height:28px;  }
+    #stock_table table th {
+        background: white;
+        padding: 10px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table td {
+        text-align: center;
+        padding: 10px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table {
+        border-spacing: 0px;
+        border-top: solid 1px #ccc;
+        border-left: solid 1px #ccc;
+    }
+</style>
+<script>
+    var supplier_id = '{$supplier_id}';
+</script>
+<load href='__TMPL__Common/js/visit_service.js' />
+<div class="main">
+<div class="main_title">{$main_title}</div>
+<div class="blank5"></div>
+<div class="blank5"></div>
+    <div id="navs">
+        <div>
+            <ul>
+                <li ><a class="show <if condition="$is_effect==1">current</if>" href="{:u("SupplierVisitingServices/index",array("is_effect"=>1,"type"=>$type,"supplier_id"=> $supplier_id))}">出售中</a></li>
+                <li><a class="show <if condition="$is_effect==0">current</if>" href="{:u("SupplierVisitingServices/index",array("is_effect"=>0,"type"=>$type,"supplier_id"=> $supplier_id))}">已下架</a></li>
+            </ul>
+        </div>
+    </div>
+<div class="search_row">
+    <div class="button_row" style="float: left;">
+        <input type="button" class="button add_service" style="background:#FF9900;"  value="新增服务" data-url="{:u("SupplierVisitingServices/add", array('supplier_id' => $supplier_id))}"/>
+        <input type="button" class="button" value="{%DEL}" onclick="del();" />
+        <if condition="$is_effect==1">
+        <input type="button" class="button down_line" value="下架" ;" />
+        <else/>
+        <input type="button" class="button up_line" value="上架" ;" />
+        </if>
+
+    </div>
+    <div style="float: right;">
+	<form name="search" action="__APP__" method="get">
+		<select name="cate_id">
+            <option value="0" <if condition="intval($_REQUEST['cate_id']) eq 0">selected="selected"</if>>所有分类</option>
+            <foreach name="cate_tree" item="cate_item">
+                <option value="{$cate_item.id}" <if condition="intval($_REQUEST['cate_id']) eq $cate_item['id']">selected="selected"</if>>{$cate_item.title_show}</option>
+            </foreach>
+        </select>
+        <input type="text" class="textbox" name="service_key" value="{:strim($_REQUEST['service_key'])}" placeholder="搜索服务"/>
+        <input type="text" class="textbox" name="supplier_key" value="{:strim($_REQUEST['supplier_key'])}" placeholder="搜索商家"/>
+		<input type="hidden" value="SupplierVisitingServices" name="m" />
+		<input type="hidden" value="index" name="a" />
+        <input type="hidden" value="{$is_effect}" name="is_effect">
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+     </div>
+    <div style="clear:both;"></div>
+</div>
+<div class="blank5"></div>
+<php>
+function format_service_type($type) {
+    return $type == 0 ? '标准服务' : '自定义服务';
+}
+</php>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="supplier" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:{%NAME}:edit,current_price|format_price:服务价格,service_type|format_service_type:服务分类,supplier_name:服务商家,buy_count:销量,sort|get_sort=$deal['id']:{%SORT}" 
+	actionlist="edit:{%EDIT}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

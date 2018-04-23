@@ -1,0 +1,46 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function adv(id)
+	{
+		location.href = ROOT+"?m=Adv&a=index&rel_table=deal_cate&rel_id="+id;
+	}
+</script>
+<PHP>
+	function get_iconfont($iconfont){
+		return "<a href='javascript:void(0);' class='iconcode' >".$iconfont."</a>";
+	}
+</PHP>
+<div class="main">
+<div class="main_title">短信验证码图标</div>
+<div class="blank5"></div>
+<div class="button_row">
+	<input type="button" class="button" value="{%ADD}" onclick="add();" />
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+</div>
+<div class="search_row">
+<form name="search" action="__APP__" method="get">	
+	名称：<input type="text" class="textbox" name="iconname" value="{:strim($_REQUEST['iconname'])}" />		
+	<input type="hidden" value="VerificationCode" name="m" />
+	<input type="hidden" value="index" name="a" />
+	<input type="submit" class="button" value="{%SEARCH}" />
+</form>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="deal" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px
+		,iconname:名称
+		,iconfont|get_iconfont:图标" 
+	actionlist="edit:{%EDIT}, del:{%DEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

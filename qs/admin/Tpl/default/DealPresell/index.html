@@ -1,0 +1,143 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/js/deal_presell.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<style>
+    table.form th {
+        height: 25px;
+        text-align: center;
+        background: #edf3f7;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #navs{ background:url(__TMPL__Common/images/navbgs.png) 0px 24px repeat-x; height:28px; position:relative;}
+    #navs ul{position:absolute;  }
+    #navs ul li{ float:left; display:inline; padding:0px 5px; width:90px; }
+
+    #navs a.show{ display:block; background:#4E6A81 0px 0px repeat-x; color:#fff;  padding:0px 10px;text-align:center; text-decoration:none; line-height:25px; height:28px; font-weight:bold; }
+    #navs a.show.current{  color:#fff; background:#8EA7BB repeat-x; line-height:28px;  }
+    #stock_table table th {
+        background: white;
+        padding: 10px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table td {
+        text-align: center;
+        padding: 10px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table {
+        border-spacing: 0px;
+        border-top: solid 1px #ccc;
+        border-left: solid 1px #ccc;
+    }
+</style>
+<script type="text/javascript">
+    var deal_presell_search_url="{:u("DealPresell/search_goods")}";
+    function preview(id)
+    {
+        window.open("__ROOT__/index.php?ctl=deal&act="+id+"&preview=1");
+    }
+    function show_detail(id)
+    {
+        $.weeboxs.open(ROOT+'?m=Deal&a=show_detail&id='+id, {contentType:'ajax',showButton:false,title:LANG['COUNT_TOTAL_DEAL'],width:600,height:330});
+    }
+</script>
+<php>
+    function table_get_is_effect($tag,$id)
+    {
+        if($tag){
+        return "<span class='is_effect' onclick='set_effect(".$id.",this);'>".l("IS_EFFECT_1")."</span>";
+        }
+        else{
+        return "<span class='is_effect' onclick='set_effect(".$id.",this);'>".l("IS_EFFECT_0")."</span>";
+        }
+    }
+    function get_order_url($deal_id){
+        return "<a href=\"".u("DealPresellOrder/index",array("deal_id"=>$deal_id))."\">查看订单</a>";
+    }
+    function format_max_bought($max_bought){
+        if($max_bought==-1){
+             return "不限";
+        }else{
+            return $max_bought;
+        }
+    }
+    function get_presell_number($deal_id){
+       $count=$GLOBALS['db']->getOne("select count(*) from ".DB_PREFIX."deal_order_item doi left join ".DB_PREFIX."deal_order do on doi.order_id=do.id where doi.deal_id=".$deal_id." and do.type =8 and do.pay_status=2");
+       return intval($count);
+    }
+</php>
+
+<div class="main">
+    <div class="main_title">预售列表</div>
+    <div class="blank5"></div>
+    <div id="navs">
+        <div>
+            <ul>
+                <li ><a class="show <if condition="$_REQUEST['status']==0">current</if>" href="{:u("DealPresell/index",array("status"=>0))}">全部预售</a></li>
+                <li><a class="show <if condition="$_REQUEST['status']==1">current</if>" href="{:u("DealPresell/index",array("status"=>1))}">进行中</a></li>
+                <li><a class="show <if condition="$_REQUEST['status']==2">current</if>" href="{:u("DealPresell/index",array("status"=>2))}">未开始</a></li>
+                <li><a class="show <if condition="$_REQUEST['status']==3">current</if>" href="{:u("DealPresell/index",array("status"=>3))}">已结束</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="search_row">
+        <div class="button_row" style="float: left;">
+            <div style="display: inline-block;">
+                <input type="button" id="add_presell_goods" data-action="{:u("DealPresell/insert",array())}" class="button" style="background:#FF9900;" value="新增预售"  />
+                <input type="button" class="button" value="{%DEL}" onclick="del();" />
+            </div>
+
+        </div>
+        <div style="float: right;">
+            <form name="search" action="__APP__" method="get">
+
+                商品名称 / ID：<input type="text" class="textbox" name="search_name" value="{:strim($_REQUEST['search_name'])}"  />
+                活动状态：<select name="is_effect">
+                         <option <if condition="$_REQUEST['is_effect']==-1">selected="selected"</if> value="-1">全部</option>
+                         <option <if condition="$_REQUEST['is_effect']==1">selected="selected"</if> value="1">有效</option>
+                         <option <if condition="$_REQUEST['is_effect']==0">selected="selected"</if> value="0">禁用</option>
+                        </select>
+
+                    <input type="hidden" value="DealPresell" name="{:conf("VAR_MODULE")}" />
+                    <input type="hidden" value="index" name="{:conf("VAR_ACTION")}" />
+                    <input type="hidden" value="{$_REQUEST['status']}" name="status" />
+                    <input type="submit" class="button" value="{%SEARCH}" />
+
+            </form>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="blank5"></div>
+        <html:list
+                id="dataTable"
+                style="dataTable"
+                name="deal"
+                checkbox="true"
+                action="true"
+                datasource="list"
+                show="id:商品ID
+		,name|msubstr_name:{%GOODS_NAME}:edit
+		,presell_begin_time|to_date:预售开始时间
+		,presell_end_time|to_date:预售结束时间
+        ,id|get_presell_number:预售订单数
+        ,presell_buy_count:预售销量
+		,sort|get_sort=$deal['id']:{%SORT}
+		,is_effect|table_get_is_effect=$deal['id']:{%status}"
+
+         actionlist="edit:{%EDIT},deal_id|get_order_url" />
+    <div class="blank5"></div>
+    <div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

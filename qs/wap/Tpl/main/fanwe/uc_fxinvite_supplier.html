@@ -1,0 +1,42 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+<div class="page page-current" id="uc_fxinvite">
+
+    {include file="style5.2/inc/module/fx_nav.html"}
+
+    <div class="content infinite-scroll infinite-scroll-bottom">
+
+            <div class="buttons-tab bar-nav uc_fxinvite_head">
+               	{if $page_finsh}
+				<a class="header-btn header-left iconfont" href="javascript:App.page_finsh();">&#xe604;</a>
+				{else}
+				<a class="header-btn header-left iconfont {if $back_url}go_back{else}back{/if}" {if $back_url}{else}data-no-cache="true"{/if} href="">&#xe604;</a>
+				{/if}
+                <a data-no-cache="true" class=" button {if ACTION_NAME=='index'}active{/if} " href="{url a="index" b="uc_fxinvite"}"><span>推荐好友</span></a>
+                <a data-no-cache="true" class=" button {if ACTION_NAME=='supplier'}active{/if}" href="{url a="index" b="uc_fxinvite#supplier"}"><span>推荐商家</span></a>
+            </div>
+        <ul class="fx-friend-hd flex-box b-line">
+            <li class="friend-name flex-1">商家名称</li>
+            <li class="flex-1" style="text-align: right;">带来佣金</li>
+        </ul>
+        <!-- 我的好友 -->
+
+        <div class="m-friend-list j_ajaxlist">
+            {if $data.list}
+            <ul class="friend-list j_ajaxadd">
+                {foreach from=$data.list item=friend}
+                <li class="friend-item flex-box">
+                    <p class="friend-name flex-1">{$friend.name}</p>
+                    <p class="friend-num flex-1">{function name=format_price value=$friend.money}</p>
+                </li>
+
+                {/foreach}
+            </ul>
+            <div class="pages hide">{$pages}</div>
+            {else}
+            <div class="tipimg no_data">暂无数据</div>
+            {/if}
+        </div>
+    </div>
+</div>
+{include file="style5.2/inc/footer.html"}

@@ -1,0 +1,52 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script>
+var UPLOAD_URL = '{:u("VerificationCode/do_upload_icon")}';
+var ICON_FETCH_URL = '{:u("VerificationCode/fetch_icon")}';
+</script>
+<div class="main">
+<div class="main_title">短信验证图标上传 <a href="{:u("VerificationCode/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">图标与名字配置:</td>
+		<td class="item_input">
+			<a href="javascript:void(0);" class="ui_upload upload_iconfont">上传新的图标库</a>				
+			<span id="ui_iconfont" >		
+				<span class="iconcode" id="diyfont" style="color:{$vo.iconcolor}">{$vo.iconfont}</span>
+				<input type="hidden" name="iconfont" value="{$vo.iconfont}" />图标中文名
+			</span>
+			<span class="color_pick">
+			<input type="text" id="color" name="iconname" value="{$vo.iconname}" rel="diyfont" class="iconfont_color textbox" />
+			</span>
+			<div class="ui_iconfont_select_title">请从以下图标库中选取</div>
+			<div id="ui_iconcode_select">				
+			
+			</div>	
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type='hidden' name='icon-font' value=''>
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="VerificationCode" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

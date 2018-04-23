@@ -1,0 +1,14 @@
+<?php
+return array(
+	//会员中心，特定标题，文字
+	'WAP_MAIN_INDEX_TITLE'=>'',
+	'WAP_USER_CENTER_FX_NAME'=>'网宝',
+	'WAP_USER_CENTER_UC_FX'=>'网宝管理',
+	'WAP_USER_CENTER_UC_FXWITHDRAW'=>'宝币提现',
+	'WAP_UC_FX_ACCOUNT_BALANCE'=>'宝币余额',
+	'WAP_UC_FX_INCOME_ACCUMULATED_COMMISSION'=>'累计宝币',
+	'WAP_UC_FX_TITLE'=>'网宝管理',
+	'WAP_UC_FX_BALANCE'=>'宝币',
+	'WAP_USER_CENTER_UC_FXWITHDRAW_TITLE'=>'宝币提现',
+	'UC_FX_FX_NAME'=>'代理',
+);

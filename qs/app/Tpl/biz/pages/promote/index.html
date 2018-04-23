@@ -1,0 +1,74 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/promote.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/promote/delivery_free.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/promote/delivery_free.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+
+
+
+?>
+
+{include file="inc/header.html"}
+
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<h1 class="page-title">{$head_title}</h1>
+			
+
+			<form name="delivery_free" action="{url r="biz" b="promote#delivery_free_update"}" method="post">
+				<div class="content-block">
+					<p class="f_l">满免运费</p>
+					<div class='open-btn f_l {if $is_open_delivery_free eq 1} active {/if}'>
+						<div class="open-button"></div>
+						<input type="hidden" name="is_open_delivery_free" value="{$is_open_delivery_free}">
+					</div>
+					<div class="blank5"></div>
+					<p>温馨提示：若开启满免运费，则当订单中的商品金额大于设定值时，免除运费。</p>
+				</div>
+				
+				<div class="content-block delivery_box">
+					<p class="">满免方式：消费满   <input type="text" class="pricebox" style="width:80px;" name="delivery_free_money" value="{$delivery_free_money}">  元，免运费【只能填写数字】</p>
+				
+				
+				</div>
+	
+			</form>
+			<div class="blank10"></div>
+			<div style="margin-left:14px;">
+				<button class="ui-button delivery_free" rel=blue type="submit">保存</button>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,28 @@
+{// 引入标签库 }
+
+<div class="main">
+<div class="search_row">
+	<form action="__APP__" method="get" name="seach_form">	
+		服务分类：
+		<select name="p_cate_id">
+			<option value="0">请选择服务大类</option>
+			<foreach name="cate_p_tree" item="cate_item">
+				<option value="{$cate_item.id}">{$cate_item.title_show}</option>
+			</foreach>
+		</select>
+		<select name="cate_id">
+			<option value="0">请选择服务子类</option>
+		</select>
+		服务名称：
+		<input type="text" class="textbox" name="name" value="{:strim($_REQUEST['name'])}" size="10" />
+		<input type="hidden" class="textbox" name="supplier_id" value="{:intval($_REQUEST['supplier_id'])}" />
+		<input type="hidden" class="textbox" name="stype" value="{:intval($_REQUEST['stype'])}" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+<div class="blank5"></div>
+	<div class="list_table_box">
+
+
+	</div>
+</div>

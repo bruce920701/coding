@@ -1,0 +1,1 @@
+2018-04-04 16:24:04 ERR: 门店服务不存在: Table 'qs.fanwe_supplier_location_service_link' doesn't exist; SQL: SELECT lsl.location_id, lsl.is_close, lsl.buy_count ,vs.* FROM fanwe_supplier_location_service_link lsl INNER JOIN fanwe_supplier_visiting_services vs ON lsl.supplier_vs_id=vs.id WHERE lsl.is_close=0 AND lsl.id=0

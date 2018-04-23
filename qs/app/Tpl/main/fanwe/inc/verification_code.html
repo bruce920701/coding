@@ -1,0 +1,35 @@
+<style>
+.ui-icon{
+	width:180px;
+	border:none;
+	height: 22px;
+    color: #666;
+}
+</style>
+{if $is_verification_code eq 2}
+<div class="form-item" >
+	<input class="ui-textbox ui-icon" name="verify_code" value="请选出下图中的&nbsp;&nbsp;&nbsp;{$key.iconname}" readonly="readonly">&nbsp;&nbsp;&nbsp;
+	<span style="color:#353d44;cursor:pointer;margin:0;"class="batch">换一批</span>
+	<!-- <input type="text" name="verify_code" class="ui-textbox img_verify" holder="请输入图片文字" /> -->
+	<div class="form-box-icon clearfix" >
+		{foreach from=$verification_code item=item key=key}
+		<div class="icon-list">
+			<i class="iconcode" rel="{$item.iconcode}">{$item.iconfont}</i>
+		</div>
+		{/foreach}
+		<input type="hidden" name="iconcode" value="">
+	</div>
+	<!-- <a href="javascript:void(0);" class="refresh_verify">
+		<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+	</a> -->
+</div>
+<span class="form_tip"></span>
+{else}
+<div class="form-item" >
+	<input type="text" name="verify_code" value="1234" class="ui-textbox img_verify" placeholder="请输入图片文字" />
+	<a href="javascript:void(0);" class="refresh_verify">
+		<img src="{$APP_ROOT}/verify.php" class="verify" rel="{$APP_ROOT}/verify.php" />
+	</a> 
+</div>
+<span class="form_tip"></span>
+{/if}

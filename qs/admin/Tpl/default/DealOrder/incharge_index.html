@@ -1,0 +1,62 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<script type="text/javascript">
+	function pay_incharge(id)
+	{
+		if(confirm("{%CONFIRM_PAY_INCHARGE}"))
+		location.href = ROOT+"?"+VAR_MODULE+"=DealOrder&"+VAR_ACTION+"=pay_incharge&id="+id;
+	}
+
+</script>
+<div class="main">
+<div class="main_title">{%INCHARGE_ORDER}</div>
+<div class="blank5"></div>
+<PHP>
+
+	function get_handle($id,$order_info)
+	{
+
+		if($order_info['is_delete']==1 || $order_info['order_status']==1)
+		{
+			$str.="&nbsp;&nbsp;<a href='javascript:del(".$id.");'>删除</a>";
+		}
+		elseif($order_info['pay_status']==0)
+		{
+			$str.="&nbsp;&nbsp;<a href='".u("DealOrder/cancel",array("id"=>$id))."'>关闭交易</a>";
+		}
+		return $str;
+	}
+</PHP>
+<div class="search_row">
+	<form name="search" action="__APP__" method="get">	
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" />
+		{%USER_NAME}：<input type="text" class="textbox" name="user_name" value="{:strim($_REQUEST['user_name'])}" />
+		<input type="hidden" value="DealOrder" name="m" />
+		<input type="hidden" value="incharge_index" name="a" />
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+</div>
+
+<div class="button_row">
+	<input type="button" class="button" value="{%DEL}" onclick="del();" />
+	<a href="<PHP> echo U("DealOrder/incharge_trash")</php>" class="button">历史订单</a>
+	
+</div>
+
+
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="incharge" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn:{%ORDER_SN},user_id|get_user_name:{%USER_NAME},total_price|format_price:订单金额,pay_amount|get_pay_amount=$incharge:应付金额,payment_id|get_payment_name:{%PAYMENT_TYPE},pay_status|get_pay_status:{%PAYMENT_STATUS}"
+	actionlist="id|get_handle=$incharge" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

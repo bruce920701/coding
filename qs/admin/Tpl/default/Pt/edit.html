@@ -1,0 +1,229 @@
+{// 引入标签库 }
+<tagLib name="html"/>
+<include file="Public:header"/>
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn"></script>
+<load href='__TMPL__Common/js/calendar/calendar.css'/>
+<load href='__TMPL__Common/js/calendar/calendar.js'/>
+<load href='__TMPL__Common/js/pt_edit.js'/>
+<style>
+    .img-show-box {
+        width: 700px;
+        float: left;
+    }
+    .img-show-box .add_img img{
+        width: 100%;
+    }
+
+    .img-show-box .add_img .file-btn{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .img-show-box .img-item{
+        width: 50px;
+        height: 50px;
+        float: left;
+        border: solid 1px #ccc;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .img-show-box .img-item .item_span{
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+</style>
+<script type="text/javascript">
+
+</script>
+<div class="main">
+<div class="main_title">{$deal_info.name}{%EDIT} <a href="{:u("Pt/index",array())}"
+    class="back_list">{%BACK_LIST}</a></div>
+ <form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<div class="blank5"></div>
+<table class="form" cellpadding=0 cellspacing=0>
+<tr>
+    <td colspan=2 class="topTd"></td>
+</tr>
+<tr>
+    <td class="item_title">商品分类</td>
+    <td class="item_input cate_row">
+
+        <div class="selected_shop_cate_two f_l">
+
+            <foreach name="shop_cate" item="cate">
+                <div class="select_item shop_id" data_id="{$cate.id}">
+                    <if condition="$cate['first_cate']">
+                        {$cate.first_cate} &gt;
+                    </if>
+                    {$cate.name}
+                </div>
+
+            </foreach>
+
+        </div>
+
+    </td>
+</tr>
+<tr>
+    <td class="item_title">基本信息</td>
+    <td class="item_input">
+
+        <div class="info_row"><span class="row_left row_left_require">商品标题 :</span>
+            <div class="row_right">{$deal_info.name}</div>
+        </div>
+
+        <div class="info_row"><span class="row_left row_left_require">商品图片 :</span>
+
+            <div class="row_right">
+                <div class="img-show-box">
+                    <foreach name="img_list" item="img">
+                        <div class="img-item ">
+                            <span class="item_span"
+                                  style="background-image:url('{$img}');background-size: cover;background-position: 50% 20%;background-repeat: no-repeat;"></span>
+                        </div>
+                    </foreach>
+                    <div class="img_bg_box"></div>
+                </div>
+            </div>
+        </div>
+        <div class="info_row"><span class="row_left row_left_require">品牌名称 :</span>
+            <div class="row_right">{$brand_name}</div>
+        </div>
+    </td>
+</tr>
+
+<tr>
+    <td class="item_title">
+        预售设置
+    </td>
+    <td class="item_input">
+        <div class="info_row "><span class="row_left row_left_require">价格 :</span>
+
+            <div class="row_right">
+
+                <div class="price_item">
+                    <span class="price_title">销售价 </span>
+                    <input type="text" class="textbox pricebox f_l" id="current_price" style="width:80px;" value="{$deal_info.current_price}" readonly="readonly"/>
+                </div>
+
+                <div class="price_item">
+                    <span class="price_title">{%DEAL_ORIGIN_PRICE}</span>
+                    <input type="text" class="textbox pricebox f_l" id="origin_price" style="width:80px;" value="{$deal_info.origin_price}" readonly="readonly"/>
+                </div>
+
+                <div class="price_item">
+			        <span class="price_title">成本价 </span>
+                    <input type="text" class="textbox pricebox f_l" id="balance_price" style="width:80px;" value="{$deal_info.balance_price}" readonly="readonly"/>
+                </div>
+
+                <div class="text_info">
+
+                    毛利率：<span class="price_profit_precentage">0.00%</span>毛利额 :<span class="price_profit">0.00</span>
+                </div>
+            </div>
+        </div>
+        <div class="info_row"><span class="row_left">订金类型 :</span>
+            <div class="row_right">
+                使用【订金】，会员可申请退款
+            </div>
+        </div>
+        <!--<div class="info_row"><span class="row_left">订金类型 :</span>-->
+            <!--<div class="row_right">-->
+                <!--<input type="radio" name="presell_type" <if condition="$deal_info['presell_type']==0">checked='checked'</if> value="0">使用【订金】，会员可申请退款<br/>-->
+                <!--<input type="radio" name="presell_type" <if condition="$deal_info['presell_type']==1">checked='checked'</if>  value="1">使用【定金】，会员不可申请退款；支付尾款超时的订单，定金不退还-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="info_row"> <div class="row_left_require row_left"><span>*</span>预售<span style="color:black;" class="lang-ding">订</span>金 :</div>
+            <div class="row_right ">
+
+                <div id="stock_table">
+                    <div class="syn_box">
+                        <div class="f_l">
+                            <span class="syn_title"><span class="lang-ding">订</span>金</span><input class="syn_value pricebox" name="presell_deposit_money_default" type="text" value="{$deal_info.presell_deposit_money}" />元，
+                            <span class="syn_title">抵扣</span><input class="syn_value pricebox" name="presell_discount_money_default" type="text" value="{$deal_info.presell_discount_money}" />元。
+                        </div>
+                        <div class="syn_price_setting deal_button ">
+                            <div class="button">批量设置</div>
+                        </div>
+                        <span class="text_tip">【只可输入 数字， 订金 < 抵扣金额 < 商品售价】</span>
+                    </div>
+                    {$html}
+                </div>
+            </div>
+        </div>
+        <div class="info_row"><span class="row_left ">总库存 :</span>
+
+            <div class="row_right">
+                <input type="text" class="textbox" disabled="disabled" value="{$deal_info.max_bought}"/>
+            </div>
+        </div>
+        <div class="info_row"><span class="row_left">预售开始时间 :</span>
+
+            <div class="row_right">
+                <input type="text" class="textbox" name="begin_time" id="begin_time" value="{$deal_info.presell_begin_time}"
+                       onfocus="this.blur(); return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');"/>
+                <input type="button" class="button" id="btn_begin_time" value="{%SELECT_TIME}"
+                       onclick="return showCalendar('begin_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_begin_time');"/>
+                <input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#begin_time').val('');"/>
+                <span class="text_tip">不设置立即上架</span>
+            </div>
+        </div>
+
+        <div class="info_row"> <div class="row_left_require row_left"><span>*</span>预售结束时间 :</div>
+
+            <div class="row_right">
+                <input type="text" class="textbox" name="end_time" id="end_time" value="{$deal_info.presell_end_time}"
+                       onfocus="this.blur(); return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');"/>
+                <input type="button" class="button" id="btn_end_time" value="{%SELECT_TIME}"
+                       onclick="return showCalendar('end_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_end_time');"/>
+                <input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#end_time').val('');"/>
+                <span class="text_tip">不可为空，且大于预售开始时间（也是开始付尾款时间）</span>
+            </div>
+        </div>
+        <div class="info_row"> <div class="row_left_require row_left"><span>*</span>发货时间 :</div>
+
+            <div class="row_right">
+                <input type="text" class="textbox" name="delivery_time" id="delivery_time" value="{$deal_info.presell_delivery_time}"
+                       onfocus="this.blur(); return showCalendar('delivery_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_delivery_time');"/>
+                <input type="button" class="button" id="btn_delivery_time" value="{%SELECT_TIME}"
+                       onclick="return showCalendar('delivery_time', '%Y-%m-%d %H:%M:%S', false, false, 'btn_delivery_time');"/>
+                <input type="button" class="button" value="{%CLEAR_TIME}" onclick="$('#delivery_time').val('');"/>
+                <span class="text_tip">不可为空，且大于等于预售结束时间</span>
+            </div>
+        </div>
+</tr>
+
+
+<tr>
+    <td colspan=2 class="topTd"></td>
+</tr>
+<tr>
+    <td class="item_title"></td>
+    <td class="item_input">
+        <!--隐藏元素-->
+        <input type="hidden" name="id" value="{$deal_info.id}"/>
+        <input type="hidden" name="{:conf("VAR_MODULE")}" value="Pt" />
+        <input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+        <!--隐藏元素-->
+        <input type="submit" class="button" value="保存"/>
+        <input type="reset" class="button cancel_deal" value="取消"/>
+    </td>
+</tr>
+<tr>
+    <td colspan=2 class="bottomTd"></td>
+</tr>
+
+</table>
+
+<div class="blank5"></div>
+
+</form>
+</div>
+<include file="Public:footer"/>

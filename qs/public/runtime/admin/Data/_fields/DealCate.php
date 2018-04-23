@@ -1,0 +1,27 @@
+<?php
+return array (
+  0 => 'id',
+  1 => 'name',
+  2 => 'brief',
+  3 => 'description',
+  4 => 'pid',
+  5 => 'is_delete',
+  6 => 'is_effect',
+  7 => 'is_new',
+  8 => 'sort',
+  9 => 'uname',
+  10 => 'recommend',
+  11 => 'icon',
+  12 => 'rec_youhui',
+  13 => 'rec_daijin',
+  14 => 'iconfont',
+  15 => 'iconcolor',
+  16 => 'icon_img',
+  17 => 'm_iconfont',
+  18 => 'm_iconcolor',
+  19 => 'm_iconbgcolor',
+  20 => 'app_icon_img',
+  '_autoinc' => true,
+  '_pk' => 'id',
+);
+?>

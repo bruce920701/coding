@@ -1,0 +1,90 @@
+.biz_vs_pay_items_head i {
+    font-size: 1.2rem;
+}
+
+.page-vs_pay_items .vs-nav {
+    height: 100%;
+}
+
+.page-vs_pay_items .left-btn {
+    padding-left: 0.5rem
+}
+
+.page-vs_pay_items .right-btn a {
+    display: block;
+    width: 5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+.page-vs_pay_items .right-btn a::before{
+	background: #ddd;
+}
+.page-vs_pay_items .right-btn a.confirm-btn {
+    background: @themecolor;
+    border-color: @themecolor;
+    color: #fff;
+}
+
+.page-vs_pay_items .buttons-tab {
+    position: relative;
+}
+
+.page-vs_pay_items .tab-list {
+    width: 100%;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+.page-vs_pay_items .buttons-tab .button {
+    width: auto;
+    font-size: 0.65rem;
+}
+
+.page-vs_pay_items .buttons-tab .button.active {
+    color: @themecolor;
+    border: none;
+}
+
+.page-vs_pay_items .tab-line {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    height: .13rem;
+    background: #ff2244;
+    border-radius: 3px 3px 0 0;
+    z-index: 3;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.page-vs_pay_items .service-list {
+    background: #fff;
+    padding: 0.5rem;
+}
+
+.page-vs_pay_items .service-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 0.2rem;
+}
+.page-vs_pay_items .m-num-box{
+	width: auto;
+}
+.page-vs_pay_items .m-num-box input.u-txt{
+	width: 1rem;
+}
+.page-vs_pay_items .vs_pay{
+	display: none;
+}
+.page-vs_pay_items .vs_pay.active{
+	display: block;
+}
+.page-vs_pay_items .right-btn a.hide{
+	display: none;
+}

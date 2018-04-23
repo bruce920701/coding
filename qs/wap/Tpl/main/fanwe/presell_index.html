@@ -1,0 +1,117 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+<div class="page page-current" id="presell_index">
+    <script>
+        var INDEX_URL='{url a="index" r="presell"}';
+        var html_id='presellindex';
+        var geo_url = '{url a="index" r="userxypoint"}';
+        var TENCENT_MAP_APPKEY="<?php echo app_conf("TENCENT_MAP_APPKEY"); ?>";
+    </script>
+    {include file="style5.2/inc/module/nav.html"}
+    {include file="style5.2/inc/auto_header.html"}
+    <div class="content  infinite-scroll infinite-scroll-bottom infinite-index-bottom" data-distance="10">
+        {if $data.advs}
+        <div class="m-index-banner j-index-banner" data-space-between='0'>
+            <div class="swiper-wrapper">
+                {foreach from="$data.advs" item="adv"}
+                <div class="swiper-slide">
+                    <a href="{$adv.url}"  data-no-cache="true">
+                        <img alt="" src="{$adv.img}"/>
+                    </a>
+                </div>
+                {/foreach}
+            </div>
+            {if $data.advs_count gt 1}
+            <div class="swiper-pagination"></div>
+            {/if}
+            {if $data.is_banner_square eq 0}
+            <!-- 两种展示方式判断 -->
+            <div class="sbroud"><img alt="" src="{$TMPL}/style5.2/images/static/sbroud.png"/></div>
+            {/if}
+        </div>
+        {/if}
+
+        {if $data.indexs.count gt 0}
+        <div class="m-sort_nav  j-sort_nav" data-space-between='0'>
+            <div class="sort_list swiper-wrapper">
+                {foreach name="index_nav" from=$data.indexs.list item=item key=key}
+                {if $smarty.foreach.index_nav.index%10 eq 0}
+                    <div  class="sort_box swiper-slide" {$smarty.foreach.index_nav.index}>
+                {/if}
+                    <div class="sort_li">
+                        <a data-no-cache="true" href="{$item.url}">
+                            <span class="yuan" style="background-color:{$item.bg_color}" ><i class="diyfont" style="color:{$item.color}">{$item.icon_name}</i></span>
+                            <span class="txt">{$item.name}</span>
+                        </a>
+                    </div>
+                {if $smarty.foreach.index_nav.index eq $data.indexs.count-1}
+                </div><!--第一版的闭合标签  -->
+                {/if}
+                {if $smarty.foreach.index_nav.index>2 && $smarty.foreach.index_nav.index%10 eq 9  && $smarty.foreach.index_nav.index neq $data.indexs.count-1}
+                    </div><!-- 第二版的闭合标签 -->
+                {/if}
+                {/foreach}
+            </div>
+        </div>
+        {/if}
+
+        {if $data.zt_html3}
+        {$data.zt_html3}
+        {/if}
+        {if $data.zt_html6}
+        {$data.zt_html6}
+        {/if}
+        {if $data.advs2}
+        <div class="m-index-lb j-index-lb index_adv2" data-space-between='0'>
+            <div class="swiper-wrapper">
+                {foreach from="$data.advs2" item="advs2"}
+                <div class="swiper-slide">
+                    <a href="{$advs2.url}"  data-no-cache="true">
+                        <img alt="{$advs2.name}" src="{$advs2.img}"/>
+                    </a>
+                </div>
+                {/foreach}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        {/if}
+        {if $data.zt_html5}
+        {$data.zt_html5}
+        {/if}
+        {if $data.zt_html4}
+        {$data.zt_html4}
+        {/if}
+        {if $data.xzt_html}
+        {$data.xzt_html}
+        {/if}
+
+        {if $data.deal_list}
+        <div class="m-guess">
+            <div class="tit">
+                <span><i class="icon iconfont">&#xe631;</i><i>热销商品</i> </span>
+            </div>
+        </div>
+        <div class="m-goods-list j-ajaxlist">
+            <ul class="type-cube clearfix index_tuan-ul  j-ajaxadd">
+                {foreach from=$data.deal_list item=deal }
+                <li>
+                    <a href="{$deal.url}" data-no-cache="true">
+                        <div class="goods-img"><img alt="" src="{$deal.f_icon}"/></div>
+                        <div class="goods-info">
+                            <h2 class="goods-name">{$deal.name}</h2>
+                            <div class="sale-info">
+                                <p class="price">{$deal.current_price}</p>
+                                {if $deal.buy_count gt 0}
+                                <p class="sale">已售{$deal.buy_count}</p>
+                                {/if}
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+        {/if}
+    </div>
+</div>
+{include file="style5.2/inc/footer.html"}

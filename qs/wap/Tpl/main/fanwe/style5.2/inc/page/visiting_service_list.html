@@ -1,0 +1,26 @@
+{if $data.service_list}
+	{foreach from=$data.service_list item=cate}
+        <div class="vs-list">
+            <div class="vs-list-title flex-box">
+                <p class="vs-title-lable">{$cate.name}</p>
+                <a class="vs-lsit-more" href="{url i="index" a="visiting_service_list" g="cid=$cate.id"}">更多<i class="iconfont">&#xe607;</i></a>
+            </div>
+            <div class="vs-list-goods flex-box">
+            	{foreach from=$cate.list item=item}
+                <div class="vs-goods-detail">
+                    <a href="{if $item.id}{url i="index" a="visiting_service_detail" g="data_id=$item.id"}{else}{url i="index" a="visiting_service_list" g="cid=$cate.id"}{/if}">
+                        <div class="vs-goods-img">
+                            <img alt="" date-load="1" data-src="{if $item.img}{$item.img}{else}{$TMPL}/style5.2/images/loading/no-image.png{/if}" src="{if $item.img}{$item.img}{else}{$TMPL}/style5.2/images/loading/no-image.png{/if}"/>
+                        </div>
+                        <div class="vs-goods-text">
+                            <p class="goods-title">{$item.vs_name}</p>
+                            <p class="goods-price"><span>{$item.current_price}</span></p>
+                            <p class="goods-shop"><i class="iconfont">&#xe616;</i>{$item.location_name}</p>
+                        </div>
+                    </a>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    {/foreach}
+{/if}

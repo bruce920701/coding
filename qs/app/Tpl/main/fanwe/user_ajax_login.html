@@ -1,0 +1,15 @@
+<?php
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+?>
+<script>
+	var VERIFICATION_CODE_URL='{url r="index" p="ajax#verification_code"}';
+	$(document).ready(function(){
+		$(".batch").click(function(){
+			//选择验证码图标
+			get_verification_code();
+			
+		});
+	});
+</script>
+{include file="inc/login_box.html"}

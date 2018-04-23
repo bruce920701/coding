@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?><?php if(is_array($sub_cate_tree)): foreach($sub_cate_tree as $key=>$sub_cate): ?><li data_id="<?php echo ($sub_cate["id"]); ?>"><?php echo ($sub_cate["name"]); ?></li><?php endforeach; endif; ?>

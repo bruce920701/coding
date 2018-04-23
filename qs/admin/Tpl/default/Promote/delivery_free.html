@@ -1,0 +1,102 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">满免运费活动设置</div>
+<div class="blank5"></div>
+
+<style>
+
+.content-block {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    margin: 20px 15px 0;
+	line-height: 40px;
+    padding: 10px 20px;
+}
+.open-btn.active {
+    background: #4bd763;
+}
+.open-btn {
+    width: 60px;
+    height: 24px;
+    border-radius: 12px;
+    margin-top: 8px;
+    margin-left: 20px;
+    border: 1px solid #ddd;
+    background: #ccc;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+.open-btn.active .open-button {
+    left: 34px;
+}
+.open-btn .open-button {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+    background: #fff;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+	$(".open-btn").bind('click', function() {
+		if ($(this).hasClass('active')) {
+			$(this).removeClass('active');
+			$("input[name='is_open_delivery_free']").val(0);
+
+		} else {
+			$(this).addClass('active');
+			$("input[name='is_open_delivery_free']").val(1);
+
+		}
+	});
+	
+});
+</script>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<div class="content-block">
+	<p class="f_l">满免运费</p>
+	<div class='open-btn f_l <if condition="$is_open_delivery_free eq 1"> active </if>'>
+		<div class="open-button"></div>
+		<input type="hidden" name="is_open_delivery_free" value="{$is_open_delivery_free}">
+	</div>
+	<div class="blank5"></div>
+	<p>温馨提示，若开启满免运费：</p>
+	<p>1、当订单中的自营物流配送商品金额大等于设定值时，免除物流运费</p>
+	<p>2、当订单中的驿站配送商品金额大等于设定值时，会员免付驿站配送费，配送费由平台承担</p>
+</div>
+
+<div class="content-block delivery_box">
+	<p class="">满免方式：消费满   <input type="text" class="pricebox" style="width:80px;" name="delivery_free_money" value="{$delivery_free_money}">  元，免运费【只能填写数字】</p>
+
+
+</div>
+
+
+<div class="blank10"></div>
+<input type="hidden" name="{:conf("VAR_MODULE")}" value="Promote" />
+<input type="hidden" name="{:conf("VAR_ACTION")}" value="delivery_free_update" />
+<!--隐藏元素-->
+<input type="submit" style="margin-left:15px;" class="button" value="保存" />
+ 
+</form>
+</div>
+<include file="Public:footer" />

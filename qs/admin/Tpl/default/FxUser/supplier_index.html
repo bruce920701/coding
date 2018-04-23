@@ -1,0 +1,30 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/fx_user_deal.js' />
+<php>
+
+</php>
+<script type="text/javascript">
+
+</script>
+
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+<div class="button_row">
+
+
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="fx_list" 
+	datasource="list" 
+	show="id:编号|60px,name:商家名称,money|format_price:带来佣金"  /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,163 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+<div class="page page-current" id="supplier_register_edit">
+    <script>
+        var LOGIN_URL = '{url x="index" r="user#login"}';
+        var UPLOAD_URL = '{url x="index" r="file#upload_img"}';
+        var REFRESH_URL = '{url x="index" r="uc_account"}';
+        var APP_UPLOAD_URL = '{url x="index" r="uc_account#app_upload_avatar"}';
+        var json_submit_info={$json_submit_info};
+        var load_area_url='{url x="index" r="supplier#load_area"}';
+        var load_city_url='{url x="index" r="supplier#load_city"}';
+        var script_region_url="https://api.map.baidu.com/getscript?v=2.0&ak={function name=app_conf v=BAIDU_MAP_APPKEY}&s=1";
+    </script>
+    <div class="m-mask j-close-select"></div>
+    <div class="m-select-box j-cate-box">
+        <ul class="select-box">
+            {foreach from=$data.deal_cate item=item}
+            <li class="flex-box b-line j-close-select j-select-cate" value="{$item.id}">
+                <p class="flex-1 j-cate">{$item.name}</p>
+            </li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="popup address-popup">
+        <header class="bar-nav bar">
+            <a href="javascript:void(0);" class="header-btn header-left iconfont close-popup">&#xe604;</a>
+            <p class="header-title">选择地址</p>
+            <!--<a href="javascript:void(0);" class="header-txt header-right">搜索</a>-->
+        </header>
+        <div class="content">
+            <div id="r-result"><input type="text" id="suggestId" value="{$region}" placeholder="输入小区、学校、街道" /></div>
+            <div id="baidu_searchResultPanel"></div>
+            <div id="baidu_mapBox">
+                <div id="baidu_allmap"></div>
+                <span></span>
+            </div>
+            <div id="baidu-m-result"></div>
+        </div>
+        <a href="javascript:void(0);" class="close-popup select-address click-select-address iconfont flex-box"><div class="iconfont">&#xe62f;</div><p>定位当前地址</p></a>
+    </div>
+    {include file="style5.2/inc/auto_header.html"}
+    <div class="content">
+        <form action="{$data.action_url}" name="user_register_form">
+            <ul class="supplier-register">
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">商户名称</p>
+                    <input type="text" placeholder="请输入商户名称" name="name" class="supplier-txt flex-1" value="{$data.submit_info.name}">
+                </li>
+                <li class="supplier-bar b-line j-cate-select">
+                    <p class="supplier-tit">所属分类</p>
+                    <p class="supplier-tip flex-1 j-cate">{$data.submit_info.cate_config_name}</p>
+                    <input name="deal_cate_id" type="hidden" value="{$data.submit_info.cate_config.deal_cate_id}"/>
+                    <div class="iconfont">&#xe607;</div>
+                </li>
+                <li class="supplier-bar b-line flex-box">
+                    <p class="supplier-tit flex-1">所属城市</p>
+                    <div class="p_c_r flex-1" style="display:none">
+                        <select name="region_lv1" class="region_select">
+                            <option value="0">=请选择=</option>
+                            <option value="1" selected="selected">中国</option>
+                        </select>
+                    </div>
+                    <div class="p_c_r flex-1">
+                        <select name="region_lv2" class="region_select" >
+                            <option value="0">=选择省份=</option>
+                            {foreach from=$data.province_list item=item}
+                            <option {if $item.id==$data.submit_info.province_id}selected="selected"{/if} value="{$item.id}">{$item.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="p_c_r flex-1">
+                        <select name="region_lv3" class="region_select" >
+                            <option value="0">=选择城市=</option>
+                            {foreach from=$data.city_list item=item}
+                            <option {if $item.id==$data.submit_info.city_id}selected="selected"{/if} value="{$item.id}">{$item.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="p_c_r flex-1">
+                        <select name="region_lv4" class="region_select" >
+                            {if $data.area_list}
+                            <option value="0">=选择区县=</option>
+                            {/if}
+                            {foreach from=$data.area_list item=item}
+                            <option {if $item.id==$data.submit_info.area_id}selected="selected"{/if} value="{$item.id}">{$item.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </li>
+                <li class="supplier-bar b-line j-open-address">
+                    <p class="supplier-tit">商户地址</p>
+                    <input type="text" readonly="readonly" class="supplier-tip flex-1 j-address mappick" id="picker" style="font-size: .65rem;colro:#999!important;" name="street" value="{$data.submit_info.address}" placeholder="选择小区/写字楼/学校">
+                    <div class="iconfont">&#xe607;</div>
+                    <input type="hidden" name="address" value="{$data.submit_info.address}">
+                    <input type="hidden" name="xpoint" value="{$data.submit_info.xpoint}">
+                    <input type="hidden" name="ypoint" value="{$data.submit_info.ypoint}">
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">申请会员</p>
+                    <p class="supplier-tip flex-1 j-city">{$user_info.user_name}</p>
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">联系手机</p>
+                    <input type="text" placeholder="商家提现时使用的手机号" readonly="true" id="phonenumer" name="mobile" class="supplier-txt phonenumer flex-1" value="{$user_info.mobile}">
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">验证码</p>
+                    <input type="text" placeholder="请输入验证码" class="supplier-txt flex-1" name="sms_verify">
+                    <input type="button" href="javascript:void(0)" id="btn" unique="0" lesstime="{$sms_lesstime}"  class="supplier-btn sendBtn noUseful  j-sendBtn" value="获取验证码">
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit flex-1">营业执照</p>
+                    <div class="supplier-img"><img up-name="h_license"  src="{$data.submit_info.h_license_ab}" alt=""></div>
+                    {if $app_index == 'app'}
+                    <input class="up_avatar app-upload-image" up-name="h_license" type="button" />
+                    {else}
+                    <input class="up_avatar upload-image" up-name="h_license" type="file" accept="image/jpg,image/jpeg,image/png" />
+                    {/if}
+                    <input type="hidden" name="h_license" value="{$data.submit_info.h_license}">
+                    <div class="iconfont">&#xe607;</div>
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit flex-1">商户图标</p>
+                    <div class="supplier-img"><img up-name="h_supplier_logo" src="{$data.submit_info.h_supplier_logo_ab}" alt=""></div>
+                    {if $app_index == 'app'}
+                    <input class="up_avatar app-upload-image" up-name="h_supplier_logo" type="button" />
+                    {else}
+                    <input class="up_avatar upload-image" up-name="h_supplier_logo" type="file" accept="image/jpg,image/jpeg,image/png" />
+                    {/if}
+                    <input type="hidden" name="h_supplier_logo" value="{$data.submit_info.h_supplier_logo}">
+                    <div class="iconfont">&#xe607;</div>
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit flex-1">门店图片</p>
+                    <div class="supplier-img"><img up-name="h_supplier_image" src="{$data.submit_info.h_supplier_image_ab}" alt=""></div>
+                    {if $app_index == 'app'}
+                    <input class="up_avatar app-upload-image" up-name="h_supplier_image" type="button" />
+                    {else}
+                    <input class="up_avatar upload-image" up-name="h_supplier_image" type="file" accept="image/jpg,image/jpeg,image/png" />
+                    {/if}
+                    <input type="hidden" name="h_supplier_image"  value="{$data.submit_info.h_supplier_image}">
+                    <div class="iconfont">&#xe607;</div>
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">开户银行</p>
+                    <input type="text" placeholder="请输入开户银行" name="h_bank_name" value="{$data.submit_info.h_bank_name}" class="supplier-txt flex-1">
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">银行户主</p>
+                    <input type="text" placeholder="请输入银行卡开户人名称" name="h_bank_user" value="{$data.submit_info.h_bank_user}" class="supplier-txt flex-1">
+                </li>
+                <li class="supplier-bar b-line">
+                    <p class="supplier-tit">银行卡号</p>
+                    <input type="text" placeholder="请输入银行卡号码" name="h_bank_info" value="{$data.submit_info.h_bank_info}" class="supplier-txt flex-1">
+                </li>
+            </ul>
+            <input type="hidden" name="id" value="{$data.submit_info.id}">
+            <a href="" class="main-btn user_register_btn active">提交申请</a>
+        </form>
+    </div>
+    {include file="style5.2/inc/module/sms_verify_code.html"}
+</div>
+{include file="style5.2/inc/footer.html"}

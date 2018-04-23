@@ -1,0 +1,88 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/conf.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript">
+	var supplier_id = '{$supplier_id}';
+</script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/visit_service.js' />
+<div class="main">
+<div class="main_title">{$vo.name}{%EDIT} <a href="{:u("SupplierVisitingServices/index", array('supplier_id' => $supplier_id))}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+
+<div class="blank5"></div>
+
+<table class="form shop_box_one" cellpadding=0 cellspacing=0 rel="1">
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">{%SUPPLIER_NAME}:</td>
+		<td class="item_input">
+			<if condition="$supplier_info">
+			{$supplier_info.name}
+			<input type="hidden" name="supplier_id" value="{$supplier_info.id}" />
+			<else />
+			
+			<span id="supplier_list">
+				<select name="supplier_id" id="supplier">
+					<option value="0">{%EMPTY_SELECT_SUPPLIER}</option>
+				</select>
+				</span>
+				<input type="text" class="textbox" name="supplier_key" /> 
+			<input type="button" name="supplier_key_btn" class="button" value="{%SEARCH}" />
+				
+			</if>
+		
+			<div class="info_row"><span class="row_left" style="width:auto;">{%SUPPLIER_LOCATION} :</span>
+			<div class="row_right">
+				<div id="location_list">
+
+				</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="item_title">服务类型</td>
+		<td class="item_input">
+			<p><input type="radio" name="service_type" value="0" checked>标准服务</p>
+			<p><input type="radio" name="service_type" value="1">自定义服务</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">选择服务</td>
+		<td class="item_input">
+			<input type="button" class="button add_service_box" value="添加服务" />
+			<div class="service-box" style="padding: 6px 10px;">
+
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<div class="deal_button">
+			<input type="hidden" name="m" value="SupplierVisitingServices">
+			<input type="hidden" name="a" value="insert">
+			<input type="submit" class="button" value="确定">
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>
+
+<div class="blank5"></div>
+	 
+</form>
+</div>
+
+<include file="Public:footer" />

@@ -1,0 +1,103 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+
+<div class="blank5"></div>
+
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_MONEY}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_MONEY" value="{$vo.USER_LOGIN_MONEY}"  class="pricebox"/>&nbsp;元
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_SCORE}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_SCORE" value="{$vo.USER_LOGIN_SCORE}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_POINT}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_POINT" value="{$vo.USER_LOGIN_POINT}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_KEEP_MONEY}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_KEEP_MONEY" value="{$vo.USER_LOGIN_KEEP_MONEY}" class="pricebox"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_KEEP_SCORE}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_KEEP_SCORE" value="{$vo.USER_LOGIN_KEEP_SCORE}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_LOGIN_KEEP_POINT}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_LOGIN_KEEP_POINT" value="{$vo.USER_LOGIN_KEEP_POINT}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_MONEY}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_MONEY" value="{$vo.USER_ACTIVE_MONEY}" class="pricebox"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_SCORE}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_SCORE" value="{$vo.USER_ACTIVE_SCORE}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_POINT}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_POINT" value="{$vo.USER_ACTIVE_POINT}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_MONEY_MAX}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_MONEY_MAX" value="{$vo.USER_ACTIVE_MONEY_MAX}" class="pricebox"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_SCORE_MAX}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_SCORE_MAX" value="{$vo.USER_ACTIVE_SCORE_MAX}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_ACTIVE_POINT_MAX}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_ACTIVE_POINT_MAX" value="{$vo.USER_ACTIVE_POINT_MAX}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+ 			<input type="hidden" name="{:conf("VAR_MODULE")}" value="NewMarketingAdm" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="user_reward_save" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

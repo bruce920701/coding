@@ -1,0 +1,144 @@
+#visiting_service_detail .time-content-inline {
+    line-height: 0.65rem;
+    font-size: 0.65rem;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 0.5rem;
+}
+
+#visiting_service_detail .send-time-bar {
+    margin: .5rem 0;
+    height: 2rem;
+    padding: 0 .5rem;
+    background: #fff;
+    font-size: 0.65rem;
+}
+
+#visiting_service_detail .send-time-bar .time-ico {
+    font-size: 1rem;
+    margin-right: .5rem;
+}
+
+#visiting_service_detail .send-time-bar .send-time {
+    font-size: @f_size4;
+    color: @f_color3;
+}
+
+#visiting_service_detail .time-select {
+    z-index: 21;
+}
+
+#visiting_service_detail .time-select .select-day {
+    height: auto;
+    max-height: 16.8rem;
+}
+
+#visiting_service_detail .time-select .select-time {
+    display: none;
+}
+
+#visiting_service_detail .time-select li {
+    line-height: 1rem;
+    height: 2.4rem;
+    padding: 0.2rem 0.5rem;
+}
+
+#visiting_service_detail .time-select li.active {
+    color: @themecolor;
+}
+
+#visiting_service_detail .vs-day {
+    text-align: center;
+}
+
+#visiting_service_detail .vs-day span {
+    display: block;
+}
+
+#visiting_service_detail .time-select .select-time.vs-show {
+    display: block;
+}
+
+#visiting_service_detail .time-select li.no_click {
+    color: #999;
+}
+
+#visiting_service_detail .dc-mask {
+    z-index: 10;
+}
+
+#visiting_service_detail .pop-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 21;
+    -webkit-transform: translateY(150%);
+    transform: translateY(150%);
+    -webkit-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+#visiting_service_detail .pop-box.active {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+#visiting_service_detail .describe {
+    padding-bottom: 20px;
+}
+
+#visiting_service_detail .box-title {
+    line-height: 2rem;
+    text-align: center;
+    position: relative;
+    font-size: .75rem;
+    background: #f7f7f7;
+}
+
+#visiting_service_detail .describe-text {
+    padding: 10px;
+    padding-bottom: 0;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+#visiting_service_detail .send-time-bar .select-type {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+}
+
+#visiting_service_detail .porject-right {
+    color: #999;
+    text-align: right;
+}
+
+#visiting_service_detail .porject-list {
+    padding: 0 10px;
+}
+
+#visiting_service_detail .porject-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 8.4rem;
+}
+
+#visiting_service_detail .porject-list-list {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+#visiting_service_detail .porject-list-list.active {
+    color: #ff2244;
+}
+
+#visiting_service_detail .porject-list-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 2.5rem;
+}

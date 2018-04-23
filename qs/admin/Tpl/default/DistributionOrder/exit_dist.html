@@ -1,0 +1,100 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<div class="main">
+<PHP>
+	function get_refuse_status($status)
+	{
+		if($status)
+		return "<span style='color:#f30;'>有</span>";
+		else
+		return "无";
+	}
+	function get_handle($id,$order_info)
+	{
+		return "无";
+	}
+
+	
+	function get_order_item($order_sn,$order_info)
+	{
+		$deal_order_item = unserialize($order_info['deal_order_item']);
+		$str = "<span style='font-size:14px; font-family:verdana; font-weight:bold;'>".$order_sn."</span>";
+		foreach($deal_order_item as $v)
+		{
+			$str.="<br />&nbsp;".l('DEAL_ID').":".$v['deal_id']."&nbsp;<span title='".$v['name']."'";
+			if(intval($_REQUEST['deal_id'])==$v['deal_id'])
+			{
+				$str.=" style='color:red;' ";
+			}
+			$str.=">".msubstr($v['name'],0,5)."</span>&nbsp;".l("NUMBER")." [".$v['number']."]";
+		}
+		
+		return $str;
+		
+	}
+	function get_refund_status($s, $deal_order)
+	{
+	
+		if($deal_order['is_delete'] == 1){
+			return '-';
+		}
+		
+		if($s==1){
+			return "<span style='color:red;'>有</span>";
+		}else{
+			return '无';
+		}
+			
+		 
+	}
+	function get_distribution_name($id){
+		$str = $GLOBALS['db']->getOne("select username from ".DB_PREFIX."distribution where id = ".intval($id));
+		return $str?$str:'无';
+	}
+	
+</php>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable"
+	name="deal_order" 
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn:{%ORDER_SN}
+	,user_name:{%USER_NAME}
+	,mobile:手机号
+	,distribution_id|get_distribution_name:驿站名称
+	,region_lv2|get_city=$deal_order:收货所在城市
+		 ,create_time|to_date:{%ORDER_CREATE_TIME}
+		 ,delivery_status|get_delivery_status=$deal_order:发货状态
+		 ,refund_status|get_refund_status=$deal_order:退款申请
+		 ,order_status|get_order_status=$deal_order:订单状态"
+	 /> 
+
+<div class="blank5"></div>
+<form  name="dist_choose_do" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">驿站分配:</td>
+		<td class="item_input" >
+			<table class="form" cellpadding=0 cellspacing=0 style="text-align:center;"><tr><td colspan=2 class="topTd"></td></tr><tr><td colspan=2><input type="text" name="dist_skey"><input type="button" class="dist_search" value="搜索"></td></tr><tr><td><select name="dist_result" style="width:220px;"><option value="0">未选择</option></select></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="check_ids" value="{$deal_id}" />
+			<input type="hidden" name="is_ajax" value="1" />
+			<!--隐藏元素-->
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>

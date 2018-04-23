@@ -1,0 +1,102 @@
+.page-visiting_service .m-vs-list .vs-list {
+    margin-bottom: 0.5rem;
+    padding: 0 0.5rem 0.3rem;
+    background: #fff;
+}
+
+.page-visiting_service .m-sort_nav .sort_li a .yuan {
+    background: none!important;
+}
+
+.page-visiting_service .m-vs-list .vs-list-title {
+    -weblit-justify-content: space-between;
+    justify-content: space-between;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.page-visiting_service .vs-title-lable {
+    position: relative;
+    padding: 0 0.5rem;
+    line-height: 0.75rem
+}
+
+.page-visiting_service .vs-title-lable:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 0.2rem;
+    background: @main_color;
+}
+
+.page-visiting_service .vs-lsit-more {
+    font-size: @f_size4;
+    color: @f_color3;
+}
+
+.page-visiting_service .vs-list-goods {
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+.page-visiting_service .vs-goods-detail {
+    margin-right: 0.2rem;
+    overflow: hidden;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.page-visiting_service .vs-goods-detail:last-child {
+    margin-right: 0;
+}
+
+.page-visiting_service .vs-goods-img {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.page-visiting_service .vs-goods-img:before {
+    display: block;
+    content: '';
+    padding-top: 100%;
+}
+.page-visiting_service .vs-goods-img img {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.page-visiting_service .vs-goods-text {
+    line-height: 0.8rem;
+    margin-top: 0.2rem;
+}
+.page-visiting_service .vs-goods-text p{
+    height: 0.8rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-visiting_service .goods-price {
+    font-size: @f_size5;
+    color: #E45152;
+}
+
+.page-visiting_service .goods-price span {
+    font-size: @f_size4;
+}
+
+.page-visiting_service .goods-shop {
+    font-size: @f_size5;
+    color: @f_color3;
+    
+}

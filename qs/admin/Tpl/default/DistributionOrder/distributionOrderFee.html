@@ -1,0 +1,74 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<PHP>
+	function get_settlement($status)
+	{
+		if($status==0)
+		return "<span style='color:#f30;'>未结算</span>";
+		else
+		return "已结算";
+	}
+    function get_distribution_name($id){
+    $str = $GLOBALS['db']->getOne("select name from ".DB_PREFIX."distribution where id = ".intval($id));
+    return $str;
+    }
+    function get_calss_name_payment_name($class_namn)
+    {
+        $payment_info=M("Payment")->where("class_name='".$class_namn."'")->field('name,class_name')->find();
+        $rel='';
+        if($payment_info['class_name']=='Cod'){
+        $rel=get_payment_name_rel('',$payment_config);
+        }
+        return $payment_info['name'].$rel;
+    }
+</php>
+<load href='__TMPL__Common/js/jquery.bgiframe.js' />
+<load href='__TMPL__Common/js/jquery.weebox.js' />
+<load href='__TMPL__Common/style/weebox.css' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<script type="text/javascript">
+	function ss()
+	{
+
+	}
+</script>
+<div class="main">
+<div class="main_title">{$title}</div>
+<div class="blank5"></div>
+<form name="search" action="__APP__" method="get">	
+
+<div class="search_row">
+
+		{%ORDER_SN}：<input type="text" class="textbox" name="order_sn" value="{:strim($_REQUEST['order_sn'])}" style="width:100px;" />
+
+		<input type="submit" class="button" value="{%SEARCH}" />
+		
+        <input type="hidden" value="DistributionOrder" name="m" />
+		<input type="hidden" value="<php>echo ACTION_NAME;</php>" name="a" />
+		
+
+</div>
+<div class="blank5"></div>
+</form>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable"
+	name="deal_order"
+	datasource="list" 
+	show="id:{%ID}|50px,order_sn:{%ORDER_SN}
+	    ,distribution_id|get_distribution_name:驿站
+	    ,total_price|format_price:订单金额
+	    ,distribution_fee|format_price:驿站服务费总额
+	    ,payment_class_name|get_calss_name_payment_name:付款方式
+	    ,is_settlement|get_settlement:状态
+		 "
+	 />
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

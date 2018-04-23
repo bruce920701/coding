@@ -1,0 +1,49 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+<div class="page" id="supplier_index">
+    {include file="style5.2/inc/auto_header.html"}
+	<?php
+    $this->_var['entry_name'] = ENTRY_NAME;
+	?>
+    <div class="content native-scroll">
+      <div class="supplier-banner">
+      	<img src="{$TMPL}/style5.2/images/static/supplier/banner.jpg" alt="">
+      </div>
+      <div class="supplier-step">
+	      <p class="supplier-tit">如何加入{$data.entry_name_cssh_shop_title}？</p>
+	      <img src="{$TMPL}/style5.2/images/static/supplier/step.jpg" alt="" class="step-img">
+	      <div class="step flex-box">
+	      	<p class="flex-1">1.提交资料</p>
+	      	<p class="flex-1">2.资料审核</p>
+	      	<p class="flex-1">3.签约上线</p>
+	      </div>
+	      {if $data.user_apply_supplier_status eq 0}
+	      <a href="{url a="index" b="supplier#register_add"}" class="supplier-btn" data-no-cache="true">立即加入</a>
+	      {elseif $data.user_apply_supplier_status eq 1}
+	      <a href="{url a="index" b="supplier#register_view"}" class="supplier-btn" data-no-cache="true">资料已提交审核</a>
+	      {elseif $data.user_apply_supplier_status eq 2}
+	      <div class="supplier-btn">商家入驻成功，请下载APP</div>
+	      {elseif $data.user_apply_supplier_status eq 3}
+	      <a href="{url a="index" b="supplier#register_edit"}" class="supplier-btn" data-no-cache="true">申请被驳回请重新申请</a>
+		  {/if}
+      </div>
+      <div class="supplier-bd">
+      	<p class="supplier-tit">下载{if $entry_name eq 'cssh_o2o'}商家端{else}{$data.entry_name_cssh_shop_title}{/if}</p>
+      	<p class="supplier-tip">点击下载商家端或用手机扫描二维码直接下载</p>
+      	<div class="supplier-download flex-box">
+      		<div class="qrcode">
+      			<p class="qrcode-tit">扫描二维码下载</p>
+      			<div class="qrcode-img">
+      				<img src="{function name="gen_scan_qrcode" v=$data.qrcode_url s="2"}">
+      			</div>
+      		</div>
+      		<div class="download-btn-box">
+      			<a href="{$data.app_ios_url}" class="download-btn">iphone下载</a>
+      			<a href="{$data.app_android_url}" class="download-btn">android下载</a>
+      		</div>
+      	</div>
+      	<a class="supplier-phone" href="tel:{$data.kf_phone}">商家入驻热线：{$data.kf_phone}</a>
+      </div>
+  	</div>
+</div>
+{include file="style5.2/inc/footer.html"}

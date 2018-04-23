@@ -1,0 +1,303 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-family: "方正大黑简体";
+}
+body{
+	background-color: #282834;
+}
+.clear{
+	clear: both;
+}
+.nav_top{
+	width: 94%;
+	padding: 0.1rem 3%;
+}
+.nav_top>p{
+	padding: 0.2rem 0;
+	font-size: 0.3rem;
+	text-align: center;
+	color: #fff;
+}
+.nav_top>p i{
+	float: left;
+	width: 0.5rem;
+	height: 0.4rem;
+	background: url(../../images/static/user_center/left.png) no-repeat 0 0;
+	background-size: 0.4rem 0.4rem;
+	vertical-align: middle;
+}
+.nav_top>p>span{
+	font-size: 0.22rem;
+	color: #fff;
+	float: right;
+	margin-top: 0.09rem;
+}
+.nav{
+	width: 94%;
+	padding: 0.1rem 3%;
+}
+.nav>p{
+	width: 100%;
+	text-align: right;
+	font-size: 0.2rem;
+	color: #fff;
+	padding: 0;
+	margin: 0;
+}
+.nav .nav_a{
+	width: 100%;
+}
+.nav .nav_a .nav_head{
+	float: left;
+	width: 1.3rem;
+	height: 1.3rem;
+	border-radius: 50px;
+	padding: 0.05rem;
+	background: url(../../images/static/user_center/nav_a.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.nav .nav_a .nav_head img{
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+.nav .nav_a .nav_tit{
+	float: left;
+	width: 60%;
+	margin-left: 3%;
+}
+.nav .nav_a .nav_tit p span{
+	margin-right: 0.1rem;
+}
+.nav .nav_a .nav_tit .id{
+	font-size: 0.24rem;
+	color: #fff;
+	margin-top: 0.2rem;
+}
+.nav .nav_a .nav_tit .name{
+	font-size: 0.24rem;
+	color: #fff;
+}
+.nav .nav_a .nav_tit .time{
+	font-size: 0.2rem;
+	color: #999;
+}
+.nav .xian{
+	float: left;
+	width: 100%;
+	padding: 0.3rem 0;
+}
+.nav .xian img{
+	float: left;
+	width: 100%;
+}
+.con{
+	background-color: #282834 !important;
+}
+.con>div{
+	width: 94%;
+	padding: 0 3%;
+}
+.con>div>p{
+	font-size: 0.28rem;
+	color: #FFFFFF;
+	font-weight: 600;
+	text-align: left;
+}
+.con .con_a{
+	background: url(../../images/static/user_center/s1.png) no-repeat 100% 50%;
+	background-size: 50% 0.3rem;
+}
+.con .con_a .con_tit{
+	width: 3rem;
+	height: 3rem;
+	margin: auto;
+	border-radius: 1.5rem;
+	background: url(../../images/static/user_center/center2.png) no-repeat 0 0;
+	background-size: 100% 100%;	
+	position: relative;
+}
+.con .con_a .con_tit .title{
+	width: 50%;
+	padding: 1rem 25% 0.1rem 25%;
+	text-align: center;
+	font-size: 0.3rem;
+	color: #fff;
+}
+.con .con_a .con_tit .business{
+	width: 50%;
+	text-align: center;
+	padding: 0 25% 0 25%;
+	font-size: 0.215rem;
+	color: #fff;
+	
+}
+.con .con_a .con_tit .consumer{
+	width: 60%;
+	text-align: center;
+	padding: 0 20% 0 20%;
+	font-size: 0.22rem;
+	color: #fff;
+	
+}
+.con .con_a .con_tit>img{
+	width: 89.5%;
+    height: 89.5%;
+    margin-left: 5.9%;
+    margin-top: 5.9%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	animation: rotate 60s linear 0s infinite;
+	-webkit-animation: rotate 60s linear 0s infinite;
+	-moz-animation: rotate 60s linear 0s infinite;
+	-o-animation: rotate 60s linear 0s infinite;
+}
+@keyframes rotate{
+	form{}
+	to{transform: rotate(360deg);}
+}
+@-moz-keyframes rotate{
+	form{}
+	to{transform: rotate(360deg);}
+}
+@-webkit-keyframes rotate{
+	form{}
+	to{transform: rotate(360deg);}
+}
+@-o-keyframes rotate{
+	form{}
+	to{transform: rotate(360deg);}
+}
+.con .con_a .bot_time{
+	width: 100%;
+	text-align: center !important;
+	font-size: 0.22rem !important;
+	color: #999 !important;
+	font-weight: normal !important;
+}
+.con .con_a .bot_time img{
+	width: 100%;
+}
+.con .con_a .bot_time span{
+	margin-right: 0.15rem;
+}
+.con .con_b{
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
+}
+.con .con_b .con_b_a{
+	width: 100%;
+	margin-top: 0.3rem;
+}
+.con .con_b .con_b_a p{
+	font-size: 0.26rem;
+	color: #fff;
+	font-weight: normal;
+	margin-bottom: 0.25rem;
+	text-align: left;
+}
+.con .con_b .con_b_a>div{
+	float: left;
+	width: 100%;
+	margin-bottom: 0.25rem;
+	position: relative;
+}
+.con .con_b .con_b_a>div h3{
+	font-size: 0.28rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 0.3rem;
+}
+.con .con_b .con_b_a>div>div{
+	float: left;
+	width: 70%;
+	height: 0.3rem;
+	border-radius: 0.15rem;
+	background: url(../../images/static/user_center/jindu.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	background-color: #353f56;
+}
+
+.con .con_b .con_b_a>div>div>div{
+	float: right;
+	width: 100%;
+	height: 100%;
+	border-radius: 1.5rem;
+	background-color: #353f56;
+	background-image: url(../../images/static/user_center/zero.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 0.2rem 0.3rem;
+	position: relative;
+	transition: width 2s;
+}
+.con .con_b .con_b_a>div>div>div>img{
+	float: left;
+	width: 0.8rem;
+	height: 0.8rem;
+	position: absolute;
+	top: -78%;
+	left: -0.3rem;
+}
+.con_three{
+	margin-bottom: 0.5rem !important;
+}
+.data{
+	float: left;
+	width: 30%;
+	text-align: center !important;
+	margin-bottom: 0 !important;
+}
+.none{
+	/*display: none;*/
+}
+._none{
+	/*background-size: 0 !important;*/
+}
+/*.jindu_a>.son{
+	width: 40% !important;
+}
+.jindu_b>.son{
+	width: 40% !important;
+}
+.jindu_c>.son{
+	width: 30% !important;
+}*/
+
+
+
+
+/*第二栏调整*/
+
+
+
+
+.b2 .son img{
+	/*display: none;*/
+}
+.b2 .con_tit{
+	width: 3rem;
+	height: 3rem;
+	margin: auto;
+	border-radius: 1.5rem;
+	background: url(../../images/static/user_center/zr.png) no-repeat 0.25rem 0.25rem !important;
+	background-size: 2.5rem 2.5rem !important;	
+	position: relative;
+}
+.b2 .con .con_a{
+	background: url(../../images/static/user_center/s2.png) no-repeat 0% 50% !important;
+	background-size: 50% 0.3rem !important;
+}
+.b2 .con .con_a .con_tit p{
+	font-size: 0.2rem;
+    color: #767676;
+    text-align: center;
+    padding: 1.4rem 30%;
+    font-weight: 600;
+    text-shadow: 1px 2px 3px #767676;
+}

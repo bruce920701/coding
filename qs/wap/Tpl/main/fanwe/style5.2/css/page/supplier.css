@@ -1,0 +1,79 @@
+.supplier-banner img,.supplier-step .step-img,.supplier-bd .qrcode-img img{
+    display: block;
+    width:100%;
+}
+.supplier-step{
+    background:#fff;
+    text-align: center;
+}
+.supplier-step .supplier-tit{
+    line-height: 2.5rem;
+    font-size:.8rem;
+    text-align: center;
+}
+.supplier-step .step{
+    line-height: 1.6rem;
+    color:@f_color3;
+    font-size:@f_size4;
+}
+.supplier-step .supplier-btn{
+    border-radius:3px;
+    line-height: 1.6rem;
+    color:#fff;
+    background:@themecolor;
+    text-align: center;
+    display:inline-block;
+    padding:0 1.2rem ;
+    margin: .5rem 0 1rem;
+}
+.supplier-bd .supplier-tit{
+    line-height: 1.5rem;
+    text-align: center;
+    padding-top: .5rem;
+}
+.supplier-bd .supplier-tip{
+    text-align: center;
+    color:@f_color3;
+    line-height: 1.2rem;
+    font-size:@f_size4;
+}
+.supplier-bd .supplier-download{
+    -webkit-box-pack: center;
+    -webkit-justify-content:center;
+    justify-content:center;
+    padding:.5rem 0;
+}
+.supplier-download .qrcode,.supplier-download .download-btn-box{
+    margin: 0 1.5rem;
+}
+.supplier-download .qrcode-tit{
+    color:@f_color3;
+    font-size:@f_size5;
+    line-height: 1.2rem;
+    text-align: center;
+}
+.supplier-download .qrcode-img{
+    margin: 0 auto;
+    width:3.5rem;
+    height:3.5rem;
+}
+.supplier-download .download-btn-box{
+    padding-top: .5rem;
+}
+.supplier-download .download-btn{
+    border-radius:3px;
+    background:@themecolor;
+    color:#fff;
+    text-align: center;
+    width:5rem;
+    margin: .5rem 0 .8rem;
+    line-height: 1.4rem;
+    display: block;
+}
+.supplier-bd .supplier-phone{
+    display: block;
+    line-height: 2rem;
+    font-size:@f_size4;
+    color:@f_color3;
+    text-align: center;
+}

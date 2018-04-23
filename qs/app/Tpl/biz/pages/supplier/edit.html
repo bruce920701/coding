@@ -1,0 +1,180 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/location.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+
+
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/kindeditor.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/plupload.full.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/project/project.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/supplier/supplier.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/pages/supplier/supplier.js";
+?>
+
+{include file="inc/header.html"}
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak={function name="app_conf" v="BAIDU_MAP_APPKEY"}"></script> 
+<script type="text/javascript" src="{$TMPL}/js/utils/biz.location.map.js"></script> 
+<script>
+var ajax_url = '{$ajax_url}';
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+	<div class="left_box">
+		{include file="inc/biz_nav_list.html"}
+	</div>
+	<div class="right_box">
+		<div class="content">
+			<div class="head_box clearfix">
+				<h2 class="f_l">{$page_title}</h2>
+				<div class="publish_project_btn f_r"><a href="{$go_list_url}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+			</div>
+			<div class="blank20"></div>
+			<div class="form_box">
+				
+				<form name="supplier_save" action="{url r="biz" b="supplier#save"}" method="post">
+				<div class="publish_box ">
+
+						<table class="form_teble_box add_border">
+									<colgroup>
+										<col width="120">
+										<col width="570">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="t_field_name ">商家名称:</td>
+											<td class="t_field_value">{$vo.name}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">所属分类:</td>
+											<td class="t_field_value">{$vo.cate_name}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">所属城市:</td>
+											<td class="t_field_value">{$vo.city_name}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">商户地址:</td>
+											<td class="t_field_value">{$vo.address}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">商户电话:</td>
+											<td class="t_field_value"><input class="ui-textbox " name="tel" value="{$vo.tel}"/></td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">营业时间:</td>
+											<td class="t_field_value"><input class="ui-textbox " name="open_time" value="{$vo.open_time}"/></td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">申请会员:</td>
+											<td class="t_field_value">{$vo.user_name}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">联系手机:</td>
+											<td class="t_field_value">{$vo.mobile}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">营业执照:</td>
+											<td class="t_field_value">
+												<div class="pub_upload_img_box">
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$vo.h_license h=50 w=50 g=1}">
+													</span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">其他资质:</td>
+											<td class="t_field_value">
+												<div class="preview_upbtn upload_btn_box">
+													<button id="preview " class="ui-button preview_btn" rel="orange" type="button">图片上传</button>
+												</div>
+												<div class="preview_upload_box pub_upload_img_box">
+													{if $vo.h_other_license}
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$vo.h_other_license h=50 w=50 g=1}">
+														<input type="hidden" name="h_other_license" value="{$vo.h_other_license}">
+													</span>
+													{/if}
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">商户商标:</td>
+											<td class="t_field_value">
+												<div class="pub_upload_img_box">
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$vo.preview h=50 w=50 g=1}">
+													</span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">门店图片:</td>
+											<td class="t_field_value">
+												<div class="pub_upload_img_box">
+													<span>
+														<a href="javascript:void(0);"></a><img src="{function name="get_spec_image" v=$vo.sl_preview h=50 w=50 g=1}">
+													</span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">企业名称:</td>
+											<td class="t_field_value"><input type="text" name="h_name" id="h_name" value="{$vo.h_name}" class="ui-textbox normal  " holder="请输入企业名称" /></td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">企业法人:</td>
+											<td class="t_field_value"><input type="text" name="h_faren" id="h_faren" value="{$vo.h_faren}" class="ui-textbox normal  " holder="请输入法人姓名" /></td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">法人电话:</td>
+											<td class="t_field_value"><input type="text" name="h_tel"  id="h_tel" value="{$vo.h_tel}" class="ui-textbox  normal" holder="请留下真实的联系电话，该号码不会在网站上公开" /></td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">开户银行:</td>
+											<td class="t_field_value">{$vo.bank_name}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">银行户主:</td>
+											<td class="t_field_value">{$vo.bank_user}</td>
+										</tr>
+										<tr>
+											<td class="t_field_name ">银行卡号:</td>
+											<td class="t_field_value">{$vo.bank_info}</td>
+										</tr>
+									</tbody>
+								</table>
+						<div class="blank10"></div>
+					</div>
+					<div class="confirm_form_btn" style=" text-align: left; ">
+						<div class="sub_form_btn">
+							<button class="ui-button " rel="orange" type="submit">保存</button>
+						</div>
+							
+					</div>
+				</form>
+				<div class="blank10"></div>
+			</div>
+			<div class="blank10"></div>
+		</div>
+	</div>	
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

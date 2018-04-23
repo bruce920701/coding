@@ -1,0 +1,34 @@
+<div style="padding-left:20px;">
+<input type="text" name="service_item_name[]" value="{$data['item_name']}" placeholder="时间标签">
+	从
+	<select name="service_begin_time_h[]">
+		<php>for($i=0; $i<24; $i++){</php>
+		<option value="{$i}" <if condition="$data['begin_time_h'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>:
+	<select name="service_begin_time_m[]">
+
+		<php>for($i=0; $i<60; $i++){</php>
+		<option value="{$i}" <if condition="$data['begin_time_m'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>&nbsp;至&nbsp;
+	<select name="service_end_time_h[]">
+
+		<php>for($i=0; $i<24; $i++){</php>
+		<option value="{$i}" <if condition="$data['end_time_h'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>:
+	<select name="service_end_time_m[]">
+
+		<php>for($i=0; $i<60; $i++){</php>
+		<option value="{$i}" <if condition="$data['end_time_m'] eq $i">selected="selected"</if>>{$i|str_pad=2,0,STR_PAD_LEFT}</option>
+		<php>}</php>
+
+	</select>&nbsp;时
+	<input type="number" name="service_limit_num[]" value="{$data['limit_num']}" placeholder="最大预约数">
+	<a href="javascript:void(0);" onclick="add_service_time(this);">[+]</a>
+	<a href="javascript:void(0);" onclick="remove_service_time(this);">[-]</a>
+</div>

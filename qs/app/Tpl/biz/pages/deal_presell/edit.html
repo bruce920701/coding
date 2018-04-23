@@ -1,0 +1,250 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/project.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/kindeditor.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/deal_presell/edit.js";
+?>
+{include file="inc/header.html"}
+<style>
+    .img-show-box {
+        width: 700px;
+        float: left;
+    }
+    .img-show-box .add_img img{
+        width: 100%;
+    }
+    .img-show-box .img-item{
+        width: 50px;
+        height: 50px;
+        float: left;
+        border: solid 1px #ccc;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    .img-show-box .img-item .item_span{
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+</style>
+<div class="blank20"></div>
+<div class="page wrap_full">
+<div class="left_box">
+    {include file="inc/biz_nav_list.html"}
+</div>
+<div class="right_box">
+<div class="content">
+<div class="head_box clearfix">
+    <h2 class="f_l">{$page_title}</h2>
+    <div class="publish_project_btn f_r"><a href="{$go_list_url}"><button class="ui-button " rel="white" type="button">返回列表</button></a></div>
+</div>
+
+<div class="form_box">
+<form name="deal_presell_edit" action="{url r="biz" b="deal_presell#update"}" method="post">
+<div class="publish_box ">
+<ul class="publish_cons">
+<!-- 基本信息 -->
+<li class="con_item curr">
+<table class="form_teble_box add_border">
+<colgroup>
+    <col width="120">
+    <col width="600">
+</colgroup>
+<tbody>
+<tr>
+    <td class="t_field_name">商品分类</td>
+    <td class="t_field_value addcate_info" >
+        {foreach from=$deal_shop_cate item=row}
+        <p><span>{$row.pname}  >  {$row.name}</span></p>
+        {/foreach}
+    </td>
+</tr>
+<tr>
+    <td class="t_field_name">商户名称</td>
+    <td class="t_field_value">
+        {$supplier_name}
+    </td>
+</tr>
+<tr>
+    <td class="t_field_name">支持门店</td>
+    <td class="t_field_value">
+        {$location_name}
+    </td>
+</tr>
+<tr>
+    <td class="t_field_name ">基本信息</td>
+    <td class="t_field_value">
+        <table class="t2" frame=void border="0" rules=none>
+            <tr>
+                <td class="t_field_name2">商品标题:</td>
+                <td class="t_field_value">{$deal_info.name}</td>
+            </tr>
+            <tr>
+                <td class="t_field_name2">商品图片:</td>
+                <td class="t_field_value">
+                    <div class="img-show-box">
+                        {foreach from=$img_list item=img key=key}
+                        <div class="img-item"><span class="item_span" style="background-image:url('{$img}');background-size: cover;background-position: 50% 20%;background-repeat: no-repeat;"></span></div>
+                        {/foreach}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_field_name2">品牌名称:</td>
+                <td class="t_field_value" >
+                    {$brand_name}
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="t_field_name ">库存/规格</td>
+    <td class="t_field_value">
+        <table class="t2" frame=void border="0">
+            <tr class="buy_type_0">
+                <td class="t_field_name2">价格:</td>
+                <td class="t_field_value">
+                    <div style="width: 100%;height: 33px;">
+                        <div class="price_item">
+                            <span class="price_title ">销售价</span>
+                            <input class="ui-textbox f_l" style="width: 80px;" id="current_price" value="{$deal_info.current_price}" readonly="readonly"/>
+                        </div>
+                        <div class="price_item">
+                            <span class="price_title">原价</span>
+                            <input class="ui-textbox f_l" style="width: 80px;" id="origin_price" value="{$deal_info.origin_price}" readonly="readonly"/>
+                        </div>
+                        <div class="price_item">
+                            <span class="price_title">结算价</span>
+                            <input class="ui-textbox f_l" style="width: 80px;" id="balance_price" value="{$deal_info.balance_price}" readonly="readonly" holder />
+                        </div>
+                    </div>
+                    <div class="text_info">
+                        毛利率：<span class="price_profit_precentage">0.00%</span>毛利额 :<span class="price_profit">0.00</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_field_name2">订金类型:</td>
+                <td class="t_field_value">使用【订金】，会员可申请退款</td>
+            </tr>
+            <!--<tr>-->
+                <!--<td class="t_field_name2">订金类型:</td>-->
+                <!--<td class="t_field_value">-->
+                    <!--<input style="width: 15px;" type="radio" name="presell_type" {if $deal_info.presell_type==0}checked='checked'{/if} value="0">使用【订金】，会员可申请退款<br/>-->
+                    <!--<input style="width: 15px;" type="radio" name="presell_type" {if $deal_info.presell_type==1}checked='checked'{/if}  value="1">使用【定金】，会员不可申请退款；支付尾款超时的订单，定金不退还-->
+                <!--</td>-->
+            <!--</tr>-->
+            <tr  class="deal_attr_row">
+                <td class="t_field_name2"><i class="iconfont required">&#xe606;</i>预售<span class="lang-ding">订</span>金:</td>
+                <td class="t_field_value">
+                    <div class="f_l"><span class="lang-ding">订</span>金<input class="ui-textbox" name="presell_deposit_money_default" value="{$deal_info.presell_deposit_money}"/>元，抵扣<input class="ui-textbox" name="presell_discount_money_default" value="{$deal_info.presell_discount_money}"/>元</div><div class="f_l" style="margin: 5px;"><button class="ui-button syn_price_setting" rel="white" type="button">批量设置</button><span class="t_tip">【只可输入 数字，<font class="lang-ding">订</font>金 < 抵扣金额 < 商品售价】</span><span class="t_tip">【最小<font class="lang-ding">订</font>金金额 = 商品售价 - 商品结算价】</span></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_field_name2"></td>
+                <td class="t_field_vlaue">
+                    {$html}
+                </td>
+            </tr>
+            <tr class="max_bought_row">
+                <td class="t_field_name2">商品库存:</td>
+                <td class="t_field_value"><input class="ui-textbox" id="max_bought" readonly="readonly" value="{$deal_info.max_bought}"/></td>
+            </tr>
+            <tr>
+                <td class="t_field_name2">预售开始时间:</td>
+                <td class="t_field_value"><input class="ui-textbox datetimepicker" name="begin_time" value="{$deal_info.presell_begin_time}" readonly="readonly" /><a href="javascript:void(0);" class="clear_input_btn " title="清空时间">清空</a><span class="t_tip">不设置立即上架</span></td>
+            </tr>
+            <tr>
+                <td class="t_field_name2"><i class="iconfont required">&#xe606;</i>预售结束时间:</td>
+                <td class="t_field_value"><input class="ui-textbox datetimepicker" name="end_time" value="{$deal_info.presell_end_time}" readonly="readonly" /><a href="javascript:void(0);" class="clear_input_btn " title="清空时间">清空</a><span class="t_tip">不可为空，且大于预售开始时间（也是开始付尾款时间）</span></td>
+            </tr>
+            <tr>
+                <td class="t_field_name2"><i class="iconfont required">&#xe606;</i>发货时间:</td>
+                <td class="t_field_value"><input class="ui-textbox datetimepicker" name="delivery_time" value="{$deal_info.presell_delivery_time}" readonly="readonly" /><a href="javascript:void(0);" class="clear_input_btn " title="清空时间">清空</a><span class="t_tip">不可为空，且大于等于预售结束时间</span></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</tbody>
+</table>
+</li>
+<!-- 价格数量 -->
+<li class="con_item">
+    <table class="form_teble_box add_border">
+        <colgroup>
+            <col width="120">
+            <col width="570">
+        </colgroup>
+        <tbody>
+
+        </tbody>
+    </table>
+</li>
+<!-- 规格属性 -->
+<li class="con_item">
+    <table class="form_teble_box add_border">
+        <colgroup>
+            <col width="120">
+            <col width="570">
+        </colgroup>
+        <tbody>
+
+        <tr id="filter_row">
+            <td class="t_field_name">筛选关键词:</td>
+            <td class="t_field_value">
+                <div id="filter"></div>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</li>
+</ul>
+<div class="blank10"></div>
+</div>
+
+<div class="confirm_form_btn">
+    <input type="hidden" name="id" value="{$deal_info.id}"/>
+    <input type="hidden" name="edit_type" value="{$edit_type}"/>
+    <div class="sub_form_btn f_l" style="margin-left:13%">
+
+        <button class="ui-button " rel="orange" type="submit">保存</button>
+        <a href="{$go_list_url}">
+            <button class="ui-button " rel="blue" type="button">取消</button>
+        </a>
+    </div>
+
+</div>
+</form>
+<div class="blank10"></div>
+</div>
+<div class="blank10"></div>
+</div>
+</div>
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<title>{:conf("APP_NAME")}{:l("ADMIN_PLATFORM")}</title>
+	<script type="text/javascript" src="__ROOT__/public/runtime/admin/lang.js"></script>
+	<script type="text/javascript">
+		var version = '{:app_conf("DB_VERSION")}';
+		var app_type = '{$apptype}';
+		var type = '{$type}';
+		var ofc_swf = '__TMPL__Common/js/open-flash-chart.swf';
+		var sale_line_data_url = '{:urlencode(u("Ofc/sale_line"))}';
+		var sale_refund_data_url = '{:urlencode(u("Ofc/sale_refund"))}';
+	</script>
+	<load href='__TMPL__Common/style/style.css' />
+	<load href='__TMPL__Common/style/newfxadmnode.css' />
+	<load href='__TMPL__Common/style/index_main.css' />
+	<load href='__TMPL__Common/js/jquery.js' />
+	<load href='__TMPL__Common/js/swfobject.js' />
+	<load href='__TMPL__Common/js/script.js' />
+	<load href='__TMPL__Common/js/newfxadmnode.js' />
+</head>
+<style type="text/css">
+.index-main-contents .list-box .item-box .item-info .back_select{
+    background: #dedede;
+}
+.index-main-contents .list-box .item-box{
+    width: 30%;
+    float: left;
+    font-size: 12px;
+}
+.index-main-contents .list-box .item-box span{
+    font-size: 15px;
+}
+.index-main-contents .list-box .item-title-box span{
+    font-size: 16px;
+}
+</style>
+<body>
+<div class="notify_box">
+	<div class="index-main-contents">
+		<div class="blank5"></div>
+		<div class="list-box">
+		<foreach name="menus" item="menu_group">
+			<foreach name="menu_group['nodes']" item="nodes">
+				<div class="item-title-box">
+					<div class="item-title type-{$nodes.parma.type}" type="{$nodes.parma.type}"><span>{$nodes.name}</span></div>
+				</div>
+				<div class="clearfix back-select-{$nodes.parma.type}" >
+				<foreach name="nodes['parma']['new_node']" item="node_url">
+				<div class="item-box">
+					<div class="item-info">
+						<div class="item-info-content">
+							<a class="clearfix" href="{$node_url.url}">
+							<img src="__TMPL__Common/images/icon/{$node_url.icon}.png"></img>
+							<div class="info-content-text">
+								<span class="info-label">{$node_url.name}</span>
+								<if condition="$node_url['explain']">
+								<p class="info-link-value" style="color:#8e8e8e">{$node_url.explain}</p>
+								</if>
+							</div>
+								
+							</a>
+						</div>
+					</div>
+				</div>
+				</foreach>
+				</div>
+			</foreach>
+		</foreach>
+		</div>
+	</div>
+</div>
+</body>
+</html>

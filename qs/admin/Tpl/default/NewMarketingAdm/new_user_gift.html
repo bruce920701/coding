@@ -1,0 +1,49 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+
+<div class="blank5"></div>
+
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_REGISTER_MONEY}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_REGISTER_MONEY" value="{$vo.USER_REGISTER_MONEY}"  class="pricebox"/>&nbsp;元
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_REGISTER_SCORE}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_REGISTER_SCORE" value="{$vo.USER_REGISTER_SCORE}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_USER_REGISTER_POINT}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="USER_REGISTER_POINT" value="{$vo.USER_REGISTER_POINT}" class="number-int"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+ 			<input type="hidden" name="{:conf("VAR_MODULE")}" value="NewMarketingAdm" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="new_user_gift_save" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

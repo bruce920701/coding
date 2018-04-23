@@ -1,0 +1,106 @@
+<div>
+<div id="dp_list_click">
+    {if $data.dp_list}
+    <div class="m-comment">
+        <div class="comment-tit flex-box b-line">
+            <p class="comment-count flex-1">评价( {$data.dp_count} )</p>
+            <div class="star-box">
+                <div class="m-start tit-start">
+                    <div class="start-num" style="width: {$data.supplier_info.avg_point_percent}%"></div>
+                </div>
+            </div>
+            <p class="comment-num">{$data.supplier_info.avg_point}</p>
+        </div>
+        <!--单条点评数据-->
+        {foreach from=$data.dp_list item=dp_item name=dp_item}
+        {if $smarty.foreach.dp_item.index lt 1}
+        <div class="comment-con">
+            <div class="commenter flex-box">
+                <img alt="用户头像" class="avatar" src="{$dp_item.user_avatar}" width="42">
+                <p class="username">{$dp_item.user_name}</p>
+                <div class="m-start con-start">
+                    <div class="start-num" style="width: {$dp_item.point_percent}%"></div>
+                </div>
+                <p class="date flex-1 tr">{$dp_item.format_show_date}</p>
+            </div>
+
+            <div class="comment-txt">
+                {$dp_item.content}
+            </div>
+            {if $dp_item.images}
+            <ul class="comment-imglist">
+                {foreach from=$dp_item.images item=img name="dp_imgs"}
+                {if $smarty.foreach.dp_imgs.index lt 8}
+                <li class="comment-imgitem j-comment-item" data="{$smarty.foreach.dp_imgs.iteration}">
+                    <img dfasf="{$smarty.foreach.dp_imgs.index}" src="{$img}" data-lingtsrc="{$img}" width="65" alt="有图评论-1" />
+                </li>
+                {/if}
+                {/foreach}
+            </ul>
+            {/if}
+        </div>
+        {/if}
+        {/foreach}
+        {if $data.dp_count gt 1}
+        <div class="more-comment">
+            <a href="#tab3" class="tab-link showmorecomment j-detail" data="2" data-type="{$data.buy_type}">查看全部评价</a>
+        </div>
+        {/if}
+    </div>
+
+    {/if}
+</div>
+<div id="tab3" class="tab comment-list j-ajaxlist"  style="{if !$data.dp_list}background:transparent;{/if}">
+    <div class="m-comment j-ajaxadd">
+        {if $data.dp_list}
+        <div class="comment-tit flex-box b-line">
+            <p class="comment-count flex-1">评价( {$data.dp_count} )</p>
+            <div class="star-box">
+                <div class="m-start tit-start">
+                    <div class="start-num" style="width: {$data.supplier_info.avg_point_percent}%"></div>
+                </div>
+            </div>
+            <p class="comment-num">{$data.supplier_info.avg_point}</p>
+        </div>
+        {else}
+        <div class="tipimg no_data no_dp_data">
+            暂无评价
+        </div>
+        {/if}
+        {foreach from=$data.dp_list item=dp_item}
+        <div class="comment-con b-line">
+            <div class="commenter flex-box">
+                <img alt="用户头像" class="avatar" src="{$dp_item.user_avatar}" width="42">
+                <p class="username">{$dp_item.user_name}</p>
+                <div class="m-start con-start">
+                    <div class="start-num" style="width: {$dp_item.point_percent}%"></div>
+                </div>
+                <p class="date flex-1 tr">{$dp_item.format_show_date}</p>
+            </div>
+
+            <div class="comment-txt">
+                {$dp_item.content}
+            </div>
+            {if $dp_item.images}
+            <ul class="comment-imglist comment-imglist-nolimit">
+                {foreach from=$dp_item.images item=img name="dp_imgs"}
+                {if $smarty.foreach.dp_imgs.index lt 8}
+                <li class="comment-imgitem j-comment-item" data="{$smarty.foreach.dp_imgs.iteration}">
+                    <img dfasf="{$smarty.foreach.dp_imgs.index}" src="{$img}" data-lingtsrc="{$img}" width="65" alt="有图评论-1" />
+                </li>
+                {/if}
+                {/foreach}
+            </ul>
+            {/if}
+            {if $dp_item.reply_content}
+            <div class="shop-reply">
+                <div class="sjj-up"></div>
+                <p><em>商家回复：</em>{$dp_item.reply_content}</p>
+            </div>
+            {/if}
+        </div>
+        {/foreach}
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,44 @@
+<style>
+	#preview{
+		padding: 0;
+		width:405px;
+		margin: inherit;
+		
+	}
+	.x_box{ position: relative;}
+	.add_row , .delete_row{ cursor: pointer;}
+	.x_box .x_img_box{
+	    position: relative;
+	}
+	.x_box .x_img_box > img{
+		border:solid 1px #ccc; 
+		border-right: #ccc solid 1px !important;
+   		border-bottom: #ccc solid 1px !important;
+	}
+	.x_box:first-child .x_img_box > img{border-top: #ccc solid 1px; !important}
+	.x_box .x_img_box:first-child > img{border-left: #ccc solid 1px; !important}
+	
+	.delete_one{
+		position: absolute;
+	    top: 2px;
+	    right: 2px;
+		display:none;
+	}
+	.x_img_box:hover .delete_one{
+		display:block;
+	}
+	.x_box{
+  		position: relative;
+	} 
+	.x_box:after{
+		content:"";
+		display:block;
+		clear:both;
+	}
+	.delete_row{
+	    position: absolute;
+	    right: -30px;
+	    bottom: 0px;
+	}
+	
+</style>

@@ -1,0 +1,58 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<div class="main">
+<div class="main_title">{$title_name}</div>
+<div class="blank5"></div>
+
+<div class="blank5"></div>
+
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_INVITE_REFERRALS}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="INVITE_REFERRALS" value="{$vo.INVITE_REFERRALS}" />&nbsp;元
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_REFERRAL_LIMIT}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="REFERRAL_LIMIT" value="{$vo.REFERRAL_LIMIT}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_REFERRALS_DELAY}：</td>
+		<td class="item_input" >
+			<input style="height: 20px;" type="text" name="REFERRALS_DELAY" value="{$vo.REFERRALS_DELAY}" />
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title">{%CONF_REFERRAL_IP_LIMIT}：</td>
+		<td class="item_input" >
+			<select name="REFERRAL_IP_LIMIT">
+				<option value="0" <if condition="$vo.REFERRAL_IP_LIMIT eq 0">selected="selected"</if>>{%CONF_REFERRAL_IP_LIMIT_0}</option>
+				<option value="1" <if condition="$vo.REFERRAL_IP_LIMIT eq 1">selected="selected"</if>>{%CONF_REFERRAL_IP_LIMIT_1}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+ 			<input type="hidden" name="{:conf("VAR_MODULE")}" value="NewMarketingAdm" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="recommend_user_register_save" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

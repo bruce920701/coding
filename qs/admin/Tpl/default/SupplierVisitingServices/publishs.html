@@ -1,0 +1,85 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<style>
+    table.form th {
+        height: 25px;
+        text-align: center;
+        background: #edf3f7;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #navs{ background:url(__TMPL__Common/images/navbgs.png) 0px 24px repeat-x; height:28px; position:relative;}
+    #navs ul{position:absolute;  }
+    #navs ul li{ float:left; display:inline; padding:0px 5px; width:90px; }
+
+    #navs a.show{ display:block; background:#4E6A81 0px 0px repeat-x; color:#fff;  padding:0px 10px;text-align:center; text-decoration:none; line-height:25px; height:28px; font-weight:bold; }
+    #navs a.show.current{  color:#fff; background:#8EA7BB repeat-x; line-height:28px;  }
+    #stock_table table th {
+        background: white;
+        padding: 10px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table td {
+        text-align: center;
+        padding: 10px;
+        border-right: #ccc solid 1px;
+        border-bottom: #ccc solid 1px;
+    }
+    #stock_table table {
+        border-spacing: 0px;
+        border-top: solid 1px #ccc;
+        border-left: solid 1px #ccc;
+    }
+</style>
+
+<div class="main">
+<div class="main_title">服务审核</div>
+<div class="blank5"></div>
+    <div id="navs">
+        <div>
+            <ul>
+                <li ><a class="show <if condition="$status==0">current</if>" href="{:u("SupplierVisitingServices/publishs",array("status"=>0,"type"=>$type))}">申请发布</a></li>
+                <li><a class="show <if condition="$status==1">current</if>" href="{:u("SupplierVisitingServices/publishs",array("status"=>1,"type"=>$type))}">申请上下架</a></li>
+            </ul>
+        </div>
+    </div>
+<div class="search_row">
+    <div class="button_row" style="float: left;">
+	<form name="search" action="__APP__" method="get">
+        审核状态
+		<select name="pub_status">
+            <option value="0" <if condition="intval($_REQUEST['pub_status']) eq 0">selected="selected"</if>>全部</option>
+			<option value="1" <if condition="intval($_REQUEST['pub_status']) eq 1">selected="selected"</if>>待审核</option>
+			<option value="2" <if condition="intval($_REQUEST['pub_status']) eq 2">selected="selected"</if>>审核通过</option>
+			<option value="3" <if condition="intval($_REQUEST['pub_status']) eq 3">selected="selected"</if>>审核拒绝</option>
+		</select>
+        <input type="text" class="textbox" name="search_key" value="{:strim($_REQUEST['search_key'])}" placeholder="服务名"/>
+		<input type="hidden" value="SupplierVisitingServices" name="m" />
+		<input type="hidden" value="publishs" name="a" />
+        <input type="hidden" value="{$status}" name="status">
+		<input type="submit" class="button" value="{%SEARCH}" />
+	</form>
+     </div>
+    <div style="clear:both;"></div>
+</div>
+<div class="blank5"></div>
+<html:list 
+	id="dataTable" 
+	style="dataTable" 
+	name="supplier" 
+	checkbox="true" 
+	action="true" 
+	datasource="list" 
+	show="id:{%ID}|50px,name:{%NAME}:edit,create_time|to_date:提交时间,service_type:服务分类,supplier_name:服务商家,sub_status:申请类型,pub_status:状态" 
+	actionlist="edit:{%VIEW}, foreverdel:{%FOREVERDEL}" /> 
+
+<div class="blank5"></div>
+<div class="page">{$page}</div>
+</div>
+<include file="Public:footer" />

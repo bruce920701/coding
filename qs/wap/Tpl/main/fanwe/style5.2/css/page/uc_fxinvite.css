@@ -1,0 +1,48 @@
+.fx-friend-hd{
+	height: 2.2rem;
+	background: #fff;
+}
+.fx-friend-hd li{
+	text-align: center;
+	padding: 0 .5rem;
+	font-size:@f_size2;
+}
+#uc_fxinvite .friend-name{
+	text-align: left;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden; 
+}
+#uc_fxinvite .friend-num{
+	text-align: right;
+}
+.friend-list{
+	margin-top: .25rem;
+}
+.friend-list .friend-item{
+	background: #fff;
+	height: 2.2rem;
+	margin-bottom: .25rem;
+}
+.friend-list li p{
+	line-height: 2.2rem;
+	padding: 0 .5rem;
+	text-align: center;
+}
+.friend-list .fx-num{
+	color:#ff2244;
+	font-size: @f_size2;
+}
+.friend-list .friend-num .iconfont{
+	font-size: 1rem;
+	display: inline-block;
+	vertical-align: top;
+}
+#uc_fxinvite .buttons-tab{
+    padding: 0 ;
+}
+#uc_fxinvite .buttons-tab .button.active{
+    color:#353d44;
+    border-color:red;
+}
+.uc_fxinvite_head .button{margin:0 10%;}

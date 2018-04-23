@@ -1,0 +1,195 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+
+<div class="page page-index" id="vs_cart">
+    
+    <div class="m-mask j-close-select"></div>
+    <form action="{url i="index" r="vs_cart#done"}" id="pay_box">
+        {include file="style5.2/inc/auto_header.html"}
+        <nav class="bar bar-tab ">
+            <div class="m-check-paybox t-line">
+                <!--j-presell预售定金时弹框提示-->
+                <!-- <a href="javascript:void(0);" class="j-presell z-state">{if $buy_type eq 1}兑换{else}去支付{/if}</a> -->
+                <a href="javascript:void(0);" class="go_pay j-presell z-state">前往支付</a>
+                <p class="u-lg-price">还需支付：<span class="u-money">{$data.service_info.format_subscription}</span></p>
+                <input type="hidden" name="id" value="{$param.id}" >
+            </div>
+        </nav>
+        <div class="content" style="bottom: 2.5rem">
+            <!--收件人信息-->
+            <a href="javascript:void(0);" url="{url i="index" r="uc_address" y="id=$param.id&is_service=1&check=check&consignee_id=$consignee_id&rs_date=$param.rs_date&tid=$param.tid"}" class="item-link item-content load_page" js_url='{$tmpl_path}js/load/service_address.js'>
+            <div class="m-order-common check_head media-list" id="consignee-info">
+                <div class="con_left" style="padding-top:.7rem;line-height:.75rem;margin-left:.5rem;">地址</div>
+                <div class="con_right flex-1 {if empty($data.consignee_info)}hide{/if}">
+                    
+                        <div class="item-inner">
+                            <div class="item-subtitle user-name">收货人:{$data.consignee_info.consignee}<span class="u-phoneNum">{$data.consignee_info.mobile}</span></div>
+                            <div class="item-text user-address">{$data.consignee_info.full_address}</div>
+                        </div>
+                    <input type="hidden" value="{$data.consignee_info.id}" name="consignee_id" />
+                </div>
+            </div>
+            </a>
+            <!--收件人信息-->
+            <!--服务时间-->
+            <div class="send-time-bar flex-box j-open-time">
+                <p class="flex-1">服务时间</p>
+                <div class="send-time"><span class="j-send-day">{$data.formatRsTime.shortDate} {$data.formatRsTime.weekday}</span> <span class="j-send-time">{$data.formatRsTime.formatTime}</span></div>
+                <div class="iconfont">&#xe607;</div>
+                <input type="hidden" name="tid" value="{$param.tid}">
+                <input type="hidden" name="rs_date" value="{$param.rs_date}">
+            </div>
+            <!--服务时间-->
+            <!-- 页面主体 -->
+            <div class="list-block m-cart">
+                <!--购物车列表开始-->
+                {if $data.service_info}
+                <div class="m-conBox m-check-order m-modify">
+                    <!--列表头部开始-->
+                    <div class="m-title  item-content b-line">
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title" style="padding-left: 0.5rem">{$data.location_info.name}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--列表头部结束-->
+                    <ul class="m-cart-list j-select-body">
+                        <li class="item-content b-line">
+                            <div class="item-inner">
+                                <div class="item-media shopImg">
+                                    <img src="{$data.service_info.service_img}">
+                                </div>
+                                <div class="z-opera z-opera-sure">
+                                    <div class="item-subtitle shopTi">
+                                        <a data-no-cache="true" href="{$data.service_info.url}">{$data.service_info.name}</a>
+                                    </div>
+                                    <div class="shop_price tr">
+                                        <p class="u-sm-price">
+                                            <span class="u-money">
+									           {$data.service_info.format_user_price}
+									       </span>
+                                        </p>
+                                        <p class="shop-count">x<i>1</i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--配送方式-->
+                <div class="m-conBox m-logist">
+                    <div class="remarkBox">
+                        <p class="remarkTitle">订单备注<span class="iconfont">&#xe607;</span></p>
+                        <div class="remarkArea">
+                            <textarea name="memo" placeholder="填写订单备注(100字以内)" maxlength="100"></textarea>
+                        </div>
+                    </div>
+                </div>
+                {/if}
+                <!--服务金额-->
+                <div id="cart_total">
+                    <div class="m-conBox m-oreder-derail">
+                        <ul class="shop_total">
+                            <li class="item-content">
+                                <div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner u-common-inline">
+                                    <div class="item-title">服务金额</div>
+                                    <div class="item-after">
+                                        <p class="u-lg-price"><!-- 合计：<span class="u-money"> <i class="u-symbol">¥</i><i class="u-symbol">{function name="format_price_txt" v=$pay_price}</i></span> -->
+                                            {$data.service_info.format_user_price}
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </li>
+                            {if $data.service_info.subscription}
+                            <li class="item-content">
+                                <div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner u-common-inline">
+                                    <div class="item-title">定金:{$data.service_info.format_subscription}</div>
+                                    <div class="item-after">
+                                        <p class="u-lg-price">
+                                            待付款
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            {/if}
+                            {if $data.service_info.residue_money}
+                            <li class="item-content">
+                                <div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner u-common-inline">
+                                    <div class="item-title">尾款:{$data.service_info.format_residue}</div>
+                                    <div class="item-after">
+                                        <p class="u-lg-price">
+                                            未开始
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            {/if}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="vs_tis" style="font-size: 0.65rem;padding: 0 0.5rem;">
+                    您下单后商家将会与您联系，为您选择服务人员。商家接单后 ，取消订单不退还订金。<span style="color: #ff2244">为保障交易安全及退款方便，请勿向 服务人员直接支付现金。</span>
+                </div>
+            </div>
+        </div>
+        <div class="dc-mask j-close-time j-close-memo"></div>
+        <div class="time-select">
+            <div class="time-select-hd">
+                <span>预约时间</span>
+            </div>
+            <ul class="select-day r-line">
+                {foreach from=$data.serviceTimesList item=times key=longDate}
+                <li class="j-day-item b-line {if $times.timeChoose}active{/if}" long-date="{$longDate}">
+					<p class="vs-day">
+                        <span>{$times.shortDate}</span>
+                        <span>{$times.weekday}</span>
+                    </p>
+                </li>
+                {/foreach}
+                <!-- <li class="j-day-item b-line">
+                                    <p class="vs-day"><span>09-02</span> <span>星期六</span></p>
+                </li> -->
+            </ul>
+            {foreach from=$data.serviceTimesList item=times}
+            <ul class="select-time {if $times.timeChoose eq 1}vs-show{/if}">
+                {foreach from=$times.serviceTimes item=day}
+                <li class="j-time-choose j-close-time b-line flex-box {if $day.is_choose eq 1}active{/if} {if $day.is_effect eq 0}no_click{/if}" data-id="{$day.id}">
+                    <p class="flex-1">{$day.rsTime}</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li>
+                {/foreach}
+                <!-- <li class="j-time-choose j-close-time b-line flex-box {if $data.order_delivery_time eq $delivery_time}active{/if}" value="{if $key eq 0}1{else}{$delivery_time}{/if}">
+                    <p class="flex-1">15:00-16:00</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li> -->
+            </ul>
+            {/foreach}
+            <!-- <ul class="select-time vs-show">
+                <li class="j-time-choose j-close-time no_click b-line flex-box {if $data.order_delivery_time eq $delivery_time}active{/if}" value="{if $key eq 0}1{else}{$delivery_time}{/if}">
+                    <p class="flex-1">15:00-15:00</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li>
+                <li class="j-time-choose j-close-time b-line flex-box {if $data.order_delivery_time eq $delivery_time}active{/if}" value="{if $key eq 0}1{else}{$delivery_time}{/if}">
+                    <p class="flex-1">15:00-16:00</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li>
+                <li class="j-time-choose j-close-time b-line flex-box {if $data.order_delivery_time eq $delivery_time}active{/if}" value="{if $key eq 0}1{else}{$delivery_time}{/if}">
+                    <p class="flex-1">16:00-17:00</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li>
+                <li class="j-time-choose j-close-time b-line flex-box {if $data.order_delivery_time eq $delivery_time}active{/if}" value="{if $key eq 0}1{else}{$delivery_time}{/if}">
+                    <p class="flex-1">17:00-18:00</p>
+                    <div class="iconfont">&#xe667;</div>
+                </li>
+            </ul> -->
+            
+        </div>
+    </form>
+</div>
+{include file="style5.2/inc/footer.html"}

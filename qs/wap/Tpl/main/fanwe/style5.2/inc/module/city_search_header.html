@@ -1,0 +1,39 @@
+{if $app_index=='app'}
+{include file="style5.2/inc/module/app-dropdown-nav.html"}
+<header class="bar bar-nav">
+	<div class="m-search-header flex-box">
+		<div class="left">
+			<a class="choosecity" href="{url a="index" r="city"}">{$data.city_name}<i class="iconfont">&#xe608;</i></a>
+		</div>
+		<a href="javascript:App.app_detail(105,0)" class="flex-1">
+		<div class="flex-box go-search">
+			<i class="iconfont">&#xe61a;</i>
+			{if $data.keyword}
+			<p>{$data.keyword}</p>
+			{else}
+			<p>搜索商品或店铺</p>
+			{/if}
+		</div>
+		</a>
+	</div>
+</header>
+{else}
+{include file="style5.2/inc/module/dropdown-nav.html"}
+<header class="bar bar-nav">
+	<div class="m-search-header flex-box">
+		<div class="left" style="padding: 0 .5rem;">
+			<a class="choosecity" href="{url a="index" r="city" y="type=$data.ctl"}">{$data.city_name}<i class="iconfont">&#xe608;</i></a>
+		</div>
+		<a href="{url a="index" r="search#index"}" class="flex-1">
+			<div class="flex-box go-search">
+				<i class="iconfont">&#xe61a;</i>
+				{if $data.keyword}
+				<p>{$data.keyword}</p>
+				{else}
+				<p>搜索商品或店铺</p>
+				{/if}
+			</div>
+		</a>
+	</div>
+</header>
+{/if}

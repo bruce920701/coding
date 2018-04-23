@@ -1,0 +1,49 @@
+<div class="user_info_box clearfix">
+	<div class="f_l avatar_box" style="margin-left: 43.5px;">{function name="show_avatar" id="$user_info.id" type="small" is_card=0}</div>
+	<div class="f_r u_name" style="width: 100%;">
+		<p>用户名: <span style="color: #f80;">{$user_info.user_name}</span></p>
+		<p>用户ID: <span style="color: #f80;">{$user_info.id}</span></p>
+		<div class="blank5"></div>
+		{if $user_info.is_merchant eq 1 }<span class="is_merchant" title="认证商家"></span>{/if}{if $user_info.is_daren eq 1 }<span class="is_daren" title="{$user_info.daren_title}"></span>{/if}
+	</div>
+</div>
+<div class="nav_account_info clearfix">
+		<a class="account_item item_l" href="javascript:;"><span>结算码数 :</span>{$user_info.active_code}</a>
+		<a class="account_item item_r" href="javascript:;"><span>注册积分 :</span>{$user_info.register_credits}</a>
+		<a class="account_item item_l" href="javascript:;"><span>受益积分 :</span>{$user_info.avalible_benefit_credits}</a>
+		<a class="account_item item_r" href="javascript:;"><span>分享积分 :</span>{$user_info.avalible_share_credits}</a>
+		<a class="account_item item_r" href="javascript:;"><span>消费积分 :</span>{$user_info.avalible_consume_credits}</a>
+	</div>
+<div class="side_nav">
+{if $uc_nav_list}
+{foreach from=$uc_nav_list item=nav_item key=nav_key}
+    {if $nav_key eq "my_fx"}
+    <dl class="nav_item none">
+		<a href="{$nav_item.url}" class="nav_item_title"><i class=""></i>{$nav_item.name}</a>
+	</dl>
+    {else}
+	<dl class="nav_item">
+		<dt class="nav_item_title"><i class=""></i>{$nav_item.name}</dt>
+		{foreach from=$nav_item.node item=s_nav_item key=s_nav_key}
+			<dd><div class="s_item clearfix {if $s_nav_item.current eq 1 }current{/if}"><i class="dot"></i>&nbsp;&nbsp;<a href="{$s_nav_item.url}">{$s_nav_item.name}</a><i class="triangle"></i></div></dd>
+		{/foreach}
+	</dl>
+	{/if}
+{/foreach}
+{/if}
+<script>
+	$(window).ready(function(){
+		var status = {$user_info.active};
+		var nav_obj = $(".side_nav .nav_item dd");
+		if(status == 0){
+			for(var i = 0; i<nav_obj.length;i++){
+				var text = nav_obj.eq(i).find("a").text();
+				if(text == "注册会员"){
+					nav_obj.eq(i).css("display","none");
+				}
+			}
+		}
+	})
+</script>
+<div class="blank20"></div>
+</div>

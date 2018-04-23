@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.jjsz{
+			min-width: 1000px;
+			height: auto;
+			margin: 0 16px;
+		}
+		.jjsz .title{
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			border-bottom: 1px solid #eaedf1;
+			font-size: 14px;
+			color: #333;
+			font-weight: bold;
+		}
+		.jjsz table{
+			width: 80%;
+			height: 200px;
+			margin: auto;
+		}
+		.jjsz table tr{
+			display: inline-block;
+			width: 100%;
+			margin-top: 10px;
+		}
+		.jjsz table tr td{
+			text-align: center;
+			font-size: 14px;
+		}
+		.jjsz table tr td input{
+			display: inline-block;
+			border: none;
+			height: 40px;
+			padding: 0px;
+			font-size: 18px;
+			color: #000;
+			text-align: center;
+			outline: none;
+		}
+		.jjsz .xftj{
+			width: 80%;
+			height: 400px;
+		}
+		.jjsz tr td{
+			display: inline-block;
+			width: 10.5%;
+			height: 50px;
+			line-height: 50px;
+			border: none;
+			padding: 5px;
+			background-color: #f9fafc;
+		}
+		.jjsz tr th{
+			display: inline-block;
+			width: 10.5%;
+			height: 50px;
+			line-height: 50px;
+			border: none;
+			padding: 5px;
+			background-color: #f9fafc;
+			font-weight: normal;
+		}
+		.jjsz tr td input{
+			display: inline-block;
+			width: 100%;
+			/*margin: 5px 5px;*/
+		}
+		.jjsz button{
+			width: 200px;
+			height: 40px;
+			background-color: #8ba9c0;
+			color: #FFf;
+			border: none;
+			outline: none;
+			margin-top: 50px;
+			margin-bottom: 100px;
+			margin-left: 200px;
+		}
+	</style>
+	<body>
+		<div class="jjsz">
+			<form action="" method="post">
+			
+			<p class="title">动态奖设置</p>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>消费额度</td>
+					<td><input type="text" value="{$config.consume_1}"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>杠杆倍数</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>激活码个数</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>奖励倍数</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+			</table>
+			<p class="title">消费条件</p>
+			<table border="0" cellspacing="0" cellpadding="0" class="xftj">
+				<tr>
+					<th>等级</th>
+					<th>直推人数</th>
+					<th>最低直推数</th>
+					<th>最高直推数</th>
+					<th>结算利率</th>
+					<th>市场订单数量</th>
+					<th>拿伞下业绩比例</th>
+				</tr>
+				<tr>
+					<td>无会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>一级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>二级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>三级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>四级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>五级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>六级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>七级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+			</table>
+			<p class="title">升级条件</p>
+			<table border="0" cellspacing="0" cellpadding="0" class="xftj">
+				<tr>
+					<th>等级</th>
+					<th>一级会员</th>
+					<th>二级会员</th>
+					<th>三级会员</th>
+					<th>四级会员</th>
+					<th>五级会员</th>
+					<th>六级会员</th>
+					<th>七级会员</th>
+					
+				</tr>
+				<tr>
+					<td>最低市场个数</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>累计买订单数</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>日结利息额度</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下普通用户</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下一级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下二级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下三级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下四级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下五级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下六级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+				<tr>
+					<td>伞下七级会员</td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+					<td><input type="text" value="0"/></td>
+				</tr>
+			</table>
+			<button>更新</button>
+			
+			</form>
+		</div>
+	</body>
+</html>

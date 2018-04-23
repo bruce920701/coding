@@ -1,0 +1,70 @@
+<div class="comments_details">
+    <table class="table_box ">
+        <colgroup>
+            <col width="90">
+            <col width="90">
+            <col width="400">
+            <col width="200">
+            <col width="100">
+        </colgroup>
+        <thead>
+        <tr>
+            <th width="8"><input type="checkbox" id="check" onclick="CheckAll('dataTable')"></th>
+            <th>
+                商品ID
+            </th>
+            <th>
+                商品名称
+            </th>
+            <th>
+                预售时间
+            </th>
+            <th>预售订单数</th>
+            <th>预售销量</th>
+            <th>排序</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable">
+        {if $list}
+        {foreach from=$list item=row}
+        <tr>
+            <td><input type="checkbox" name="key" class="key"  value="{$row.id}"></td>
+            <td>{$row.id}</td>
+            <td>{$row.name}</td>
+            <td>{if $row.presell_begin_time}{function name="to_date" v=$row.presell_begin_time}开始{else}未选择开始时间{/if}<br/>
+                {if $row.presell_end_time}{function name="to_date" v=$row.presell_end_time}结束{else}未选择结束时间{/if}
+            </td>
+            <td>
+                {$row.order_number}
+            </td>
+            <td>
+                {$row.presell_buy_count}
+            </td>
+            <td>
+                {$row.sort}
+            </td>
+            <td>{if $row.is_effect}有效{else}禁用{/if}</td>
+            <td>
+                <a href="{url a="biz" b="deal_presell#edit" c="deal_id=$row.id"}">编辑</a>
+                <a href="{url a="biz" b="deal_presell_order#index" c="deal_id=$row.id"}">查看订单</a>
+            </td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr>
+            <td colspan="5">
+                <div class="empty_tip">
+                    没有相关数据
+                </div>
+            </td>
+        </tr>
+        {/if}
+        </tbody>
+    </table>
+    <div class="blank"></div>
+    <div class="pages">
+        {$pages}
+    </div>
+</div>

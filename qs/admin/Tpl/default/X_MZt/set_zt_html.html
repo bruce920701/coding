@@ -1,0 +1,22 @@
+<div class="zt_big_box">
+ <if condition="$pic_count gt 0">
+<div class="x_box" count="{$pic_count}">
+	<php>for($j=0;$j<$pic_count;$j++){ </php>	
+		<a class="xzt_link" >			
+		<div class="x_img_box" style="width:{$width}">
+			<img src="./public/images/no-image.png" />	
+			<span class="delete_one">
+				<img src="__TMPL__Common/images/delete_icon.png" />				
+			</span>
+			<input type="hidden" name="type" value="">
+			<input type="hidden" name="ctl_name" value="">
+			<input type="hidden" name="ctl_value" value="">
+		</div>
+		</a>
+	<php>}</php>
+	<div class="delete_row">
+		[ - ]			
+	</div>
+</div>
+</if>
+</div>

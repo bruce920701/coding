@@ -1,0 +1,264 @@
+.page-vs_order_view .vs-nav-link {
+    height: 100%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem;
+    line-height: 1.35rem;
+}
+
+.page-vs_order_view .conBtn {
+    display: block;
+    width: 3.85rem;
+    height: 1.35rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    font-size: .65rem;
+    border: 1px solid #e3e5e9;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-right: 0.5rem;
+}
+
+.page-vs_order_view .conBtn:last-child {
+    margin: 0;
+}
+
+.page-vs_order_view .charge-link {
+    border-color: @themecolor;
+    background: @themecolor;
+    color: #fff;
+}
+
+.page-vs_order_view .presell-status-detail {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.75rem 0.5rem;
+    background: #ff2244;
+    color: #fff;
+}
+
+.page-vs_order_view .order-state {
+    font-size: 1.2rem;
+}
+
+.page-vs_order_view .order-time-income {
+    text-align: right;
+}
+
+.page-vs_order_view .order-end-time {
+    margin-bottom: 0.3rem;
+}
+
+.page-vs_order_view .operable {
+    margin-top: 0.5rem;
+    background: #fff;
+}
+
+.page-vs_order_view .address {
+    
+    padding: 0.5rem;
+    padding-right: 0;
+    border-bottom: 1px solid #e3e5e9;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.page-vs_order_view .user-info-name-mobel {
+    margin-bottom: 0.2rem;
+}
+
+.page-vs_order_view .address-map {
+    width: 2.25rem;
+    line-height: 2.8rem;
+    text-align: center;
+    font-size: 1.2rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.page-vs_order_view .address-map:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    background: #e3e5e9;
+}
+
+.page-vs_order_view .send-time-bar {
+    margin: 0;
+    height: 2rem;
+    padding: 0 .5rem;
+    
+    font-size: 0.65rem;
+}
+
+.page-vs_order_view .send-time-bar .time-ico {
+    font-size: 1rem;
+    margin-right: .5rem;
+}
+
+.page-vs_order_view .send-time-bar .send-time {
+    font-size: @f_size4;
+    color: @f_color3;
+}
+
+.page-vs_order_view .time-select .select-day {
+    height: auto;
+    max-height: 16.8rem;
+}
+
+.page-vs_order_view .time-select .select-time {
+    display: none;
+}
+
+.page-vs_order_view .time-select li {
+    line-height: 1rem;
+    height: 2.4rem;
+    padding: 0.2rem 0.5rem;
+}
+
+.page-vs_order_view .time-select li.active {
+    color: @themecolor;
+}
+
+.page-vs_order_view .vs-day {
+    text-align: center;
+}
+
+.page-vs_order_view .vs-day span {
+    display: block;
+}
+
+.page-vs_order_view .time-select .select-time.vs-show {
+    display: block;
+}
+
+.page-vs_order_view .time-select li.no_click {
+    color: #999;
+}
+
+.page-vs_order_view .workBox {
+    padding:0 0.5rem;
+    
+    min-height: 2rem;
+}
+
+.page-vs_order_view .workBox .workTitle {
+    width: 100%;
+    font-size: .65rem;
+    color: #666;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    line-height: 1;
+}
+
+.page-vs_order_view .workBox .workTitle .iconfont {
+    color: #ccc;
+    font-size: 1.05rem;
+}
+.page-vs_order_view .workTitle-text{
+	-webkit-flex-shrink:0;
+	flex-shrink:0;
+	width: 30%;
+}
+.page-vs_order_view .workTitle-fill{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: right;
+    color:@f_color3;
+}
+.page-vs_order_view .workArea {
+    width: 100%;
+    display: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    
+}
+
+.page-vs_order_view .workArea textarea {
+	webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    background: 0 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    padding: 0 0 0 .25rem;
+    margin: 0;
+
+    width: 100%;
+    height: 2.15rem;
+    color: #3d4145;
+    font-size: .85rem;
+    font-family: inherit;
+    padding: 0.2rem;
+    font-size: 0.65rem;
+    line-height: 0.9rem;
+    height: 5rem;
+    resize: none;
+}
+.page-vs_order_view .user-fill{
+	background: #fff;
+	margin-top: 0.5rem;
+}
+.page-vs_order_view .bespoke-time{
+	min-height: 2rem;
+	padding: 0.5rem;
+	-webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.page-vs_order_view .bespoke-fill{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-align: right;
+    color:@f_color3;
+}
+.page-vs_order_view .bespoke-text{
+	-webkit-flex-shrink:0;
+	flex-shrink:0;
+	margin-right: 2rem;
+
+}
+.page-vs_order_view .money{
+	margin-top: 0.5rem;
+}
+.page-vs_order_view .presell-price-info{
+	border-bottom:1px solid #ddd;
+	padding-left: 0;
+	margin-left: 0.5rem
+}
+.page-vs_order_view .shop_total{
+	height: 2rem;
+	padding: 0 0.5rem;
+}
+.page-vs_order_view .shop_total p.u-lg-price{
+	text-align: right;
+	width: 100%;
+}
+.page-vs_order_view .order-info{
+	margin-bottom: 0.5rem;
+}
+.page-vs_order_view .num{
+	font-size: 0.65rem;
+	color: @f_color3;
+}
+.page-vs_order_view .shop-order-bar .time{
+	font-size: 0.65rem;
+}

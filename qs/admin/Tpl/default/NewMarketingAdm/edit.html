@@ -1,0 +1,47 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+
+<div class="main">
+<div class="main_title">{$title_name} <a href="{:u("NewMarketingAdm/zy_shop_fx")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+<table class="form" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=2 class="topTd"></td>
+	</tr>
+	<tr >
+		<td class="item_title">分销设置</td>
+		<td class="item_input">
+		
+		<div class="info_row"><span class="row_left">推荐会员ID :</span><div class="row_right">
+			<input class="textbox" name="recommend_user_id" value="{$vo.recommend_user_id}"/>
+			<span class='text_tip'>[设置推荐会员ID才生效，返佣金额＝（现价－成本价）*比率]</span>		
+		</div>
+		</div>
+		
+		<div class="info_row"><span class="row_left">推荐会员返佣率 :</span><div class="row_right">
+			<input class="textbox pricebox" name="recommend_user_return_ratio" value="{$vo.recommend_user_return_ratio}"/>
+			<span class='text_tip'>%</span>		
+		</div>
+		</div>
+	</tr>
+	<tr>
+		<td class="item_title"></td>
+		<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="NewMarketingAdm" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="add_zy_shop_fx_save" />
+			<input type="hidden" name="id[]" value="{$vo.id}" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%EDIT}" />
+			<input type="reset" class="button" value="{%RESET}" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 class="bottomTd"></td>
+	</tr>
+</table>	 
+</form>
+</div>
+<include file="Public:footer" />

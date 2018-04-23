@@ -1,0 +1,46 @@
+.store_imgs .store-img {
+
+    padding: 0.25rem;
+    display: none;
+}
+
+.store_imgs .store-img.active {
+    display: block;
+}
+
+.store_imgs .img-list {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.store_imgs .comment-imgitem {
+    width: 50%;
+    padding: 0.25rem;
+}
+
+.store_imgs .imgs {
+
+    position: relative;
+    width: 100%;
+}
+
+.store_imgs .imgs::before {
+    display: block;
+    content: '';
+    padding-top: 100%;
+}
+
+.store_imgs .imgs img {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.store_imgs .list-nav-item span {
+    padding: 0 0.5rem
+}

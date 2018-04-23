@@ -1,0 +1,191 @@
+
+<load href='__TMPL__Common/js/baidumapEventWrapper.js' />
+
+<div>门店地址：<span class="poly-address">请先在基本信息栏下填写地址并进行地图定位</span></div>
+<div id="allmap" style="height:400px; width: 600px; margin: 0;"></div>
+<div id="result">
+	<input type="hidden" name="xpoints" value="{$vo.xpoints}">
+	<input type="hidden" name="ypoints" value="{$vo.ypoints}">
+</div>
+
+<!--加载鼠标绘制工具-->
+<script type="text/javascript">
+	var smap;
+    var polygon, smarker;
+	var xpoint, ypoint;
+    var xpoints = ypoints = [];
+    var mapzoom = 12;
+    var styleOptions = {
+        strokeColor:"blue",    //边线颜色。
+        strokeWeight: 2,       //边线的宽度，以像素为单位。
+        strokeOpacity: 0.5,       //边线透明度，取值范围0 - 1。
+        // fillOpacity: 0,
+        enableEditing: true,
+    };
+    var Bpoints = [];
+
+    $(document).ready(function(){
+        if ($('input[name="a"]').val() == 'update' && $('select=[name="is_visiting_service"]').val() == 1) {
+            mapInit();
+            addressInit();
+            currentPoints();
+            bpointsInit();
+            mapPolygon();
+        }
+
+        /*$('input[name="xpoint"]').change(function() {
+            // console.log('坐标变动');
+            // 清除原多边形及坐标，初始化多边形及坐标
+            if ($('select=[name="is_visiting_service"]').val() == 1) {
+                initpolygon();
+            }
+            
+        });
+        var lastAddr = $.trim($(this).val());
+        $('input[name="address"]').bind('input propertychange', function() {
+            var addr = $.trim($(this).val());
+            lastAddr = addr;
+            if (!lastAddr) {
+                initpolygon();
+            }
+        });*/
+        $('select=[name="is_visiting_service"]').bind('change', function() {
+            if ($(this).val() == 1) {
+                var address = $('input[name="address"]').val();
+                var xpoint = $('input[name="xpoint"]').val();
+                if ($.trim(address) == '' || xpoint == '') {
+                    alert('请先在基本信息栏下填写地址并进行地图定位');
+                    $(this).val(0);
+                    return false;
+                }
+                $('.service-box').show();
+                initpolygon();
+            } else {
+                $('.service-box').hide();
+            }
+        });
+    });
+
+    function initpolygon() {
+        clearOverlays();
+        mapInit();
+        addressInit();
+        initPoints();
+        bpointsInit();
+        mapPolygon();
+    }
+
+    function mapInit() {
+        if (!smap) {
+            smap = new BMap.Map("allmap",{enableMapClick:false});
+            smap.enableScrollWheelZoom();
+        }
+        xpoint = $('input[name="xpoint"]').val();
+        ypoint = $('input[name="ypoint"]').val();
+        smap.centerAndZoom(new BMap.Point(xpoint, ypoint), mapzoom);
+        if (smarker) {
+            smarker.setPosition(new BMap.Point(xpoint, ypoint));
+        } else {
+            smarker = new BMap.Marker(new BMap.Point(xpoint, ypoint), {enableMassClear:false,enableClicking:false});
+            // smarker.setTop(true);
+            smap.addOverlay(smarker);
+        }
+        
+    }
+
+    function addressInit() {
+        address = $('input[name="address"]').val();
+        $('.poly-address').html(address);
+    }
+
+    function currentPoints() {
+        orig_xpoints = $('input[name="xpoints"]').val();
+        orig_ypoints = $('input[name="ypoints"]').val();
+        xpoints = orig_xpoints.split(',');
+        ypoints = orig_ypoints.split(',');
+    }
+
+    function bpointsInit() {
+        var len = xpoints.length;
+        for (var i = 0; i < len; i++) {
+            var x = xpoints[i];
+            var y = ypoints[i];
+            Bpoints.push(new BMap.Point(x, y));
+        }
+    }
+
+    function mapPolygon() {
+        if (polygon) {
+            // polygon.hide();
+            Bpoints = [];
+            // console.log('修改多边形的'+xpoints);
+            for (i in xpoints) {
+                Bpoints.push(new BMap.Point(xpoints[i], ypoints[i]));
+            }
+            polygon.setPath(Bpoints);
+            // polygon.show();
+        } else {
+            // console.log('初始化多边形的'+xpoints);
+            polygon = new BMap.Polygon(Bpoints, styleOptions);
+            polygon.enableMassClear()
+            smap.addOverlay(polygon);
+            BMapLib.EventWrapper.addListener(polygon, 'lineupdate', lineupdate);
+        }
+    }
+
+    // 获取多边形坐标
+    function lineupdate() {
+        var points = polygon.getPath();
+        if (points.length) {
+            xpoints = [], ypoints = [];
+            for (i in points) {
+                xpoints.push(points[i].lng);
+                ypoints.push(points[i].lat);
+            }
+            setpoints();
+        }
+    }
+
+    function setpoints() {
+        $('input[name="xpoints"]').val(xpoints.join(','));
+        $('input[name="ypoints"]').val(ypoints.join(','));
+    }
+
+    function clearpoints() {
+        $('input[name="xpoints"]').val('');
+        $('input[name="ypoints"]').val('');
+    }
+
+    function clearOverlays() {
+        if (smap) {
+            smap.clearOverlays();
+        }
+    }
+
+    function initPoints() {
+        var mbo = getMinBounds();
+        xpoints = [mbo[0].lng, mbo[0].lng, mbo[1].lng, mbo[1].lng];
+        ypoints = [mbo[0].lat, mbo[1].lat, mbo[1].lat, mbo[0].lat];
+        setpoints();
+    }
+
+    function getMinBounds() {
+        /*console.log(smap.getSize());
+        var bounds = smap.getBounds();
+        var NEpoint = bounds.getNorthEast();
+        var SWpoint = bounds.getSouthWest();*/
+        var newNE = {
+            // 'lng': NEpoint.lng + (SWpoint.lng - NEpoint.lng) / 3,
+            // 'lat': NEpoint.lat + (SWpoint.lat - NEpoint.lat) / 3
+            'lng': Number(xpoint) + 0.01,
+            'lat': Number(ypoint) + 0.01,
+        }
+        var newSW = {
+            // 'lng': SWpoint.lng + (NEpoint.lng - SWpoint.lng) / 3,
+            // 'lat': SWpoint.lat + (NEpoint.lat - SWpoint.lat) / 3
+            'lng': Number(xpoint) - 0.01,
+            'lat': Number(ypoint) - 0.01,
+        }
+        return [newNE, newSW];
+    }
+</script>

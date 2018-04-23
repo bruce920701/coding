@@ -1,0 +1,23 @@
+{if $is_verification_code eq 1}
+<div class="form-item" >
+  <div class="form-box-text">
+    <input class="ui-textbox" readonly="readonly" name="verify_code" value="请选出下图中的&nbsp;{$key.iconname}"><span class="batch">换一批</span>
+  </div>
+  <div class="form-box-icon">
+  	{foreach from=$verification_code item=item key=key}
+		<div class="icon-list">
+			<i class="iconcode" rel="{$item.iconcode}">{$item.iconfont}</i>
+		</div>
+	{/foreach}
+    <input type="hidden" name="verify_image" value="">
+  </div>
+  <div class="v_btn_box">
+    <input style="-webkit-appearance: none;" type="button" class="v_btn" name="confirm_btn" value="确认">
+  </div>
+</div>
+{else}
+<div class="v_input_box"><input type="text" class="v_txt" placeholder="图形码" name="verify_image"/><img src="{$APP_ROOT}/verify.php"  rel="{$APP_ROOT}/verify.php"/></div>
+<div class="blank"></div><div class="blank"></div>
+<div class="v_btn_box"><input style="-webkit-appearance: none;"  type="button" class="v_btn" name="confirm_btn" value="确认"/></div>        
+{/if}
+                    

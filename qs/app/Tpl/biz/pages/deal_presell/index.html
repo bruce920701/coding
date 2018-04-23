@@ -1,0 +1,117 @@
+<?php
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/style.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/weebox.css";
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/fanweUI.css";
+/*日期控件*/
+$this->_var['pagecss'][] = $this->_var['TMPL_REAL']."/css/utils/jquery.datetimepicker.css";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery-1.8.2.min.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.bgiframe.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.weebox.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.pngfix.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.animateToClass.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.timer.js";
+
+/*日期控件*/
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.datetimepicker.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/fanweUI.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/script.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/time_ipt.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['cpagejs'][] = $this->_var['TMPL_REAL']."/js/search_page.js";
+$this->_var['pagejs'][] = $this->_var['TMPL_REAL']."/js/pages/deal_presell/index.js";
+?>
+{include file="inc/header.html"}
+<script>
+    var deal_presell_search_url="{url a="biz" b="deal_presell#search_goods"}";
+    var AJAX_URL	= '{url x="biz" r="deal_presell"}';
+    function set_effect(id,is_effect,domobj)
+    {
+        $.ajax({
+            url: '{url x="biz" r="deal_presell#set_effect"}',
+            data: "is_ajax=1&id="+id+"&is_effect="+is_effect,
+            dataType: "json",
+            success: function(obj){
+
+                if(obj.data=='1')
+                {
+                    $(domobj).html("有效");
+                }
+                else if(obj.data=='0')
+                {
+                    $(domobj).html("无效");
+                }
+                else if(obj.data=='')
+                {
+
+                }
+                $("#info").html(obj.info);
+            }
+        });
+    }
+</script>
+<div class="blank20"></div>
+<div class="page wrap_full">
+    <div class="left_box">
+        {include file="inc/biz_nav_list.html"}
+    </div>
+    <div class="right_box">
+        <div class="content">
+            <div class="head_box clearfix">
+                <h2 class="f_l">{$page_title}</h2>
+                <div class="publish_project_btn f_r">
+
+                </div>
+            </div>
+            <div class="blank50"></div>
+            <div class="form_box clearfix" style="padding-top:30px;">
+                <div class="standard_tab cf">
+                    <ul>
+                        <li class="{if $_REQUEST['status']==0}curr{/if}"><a href="{url a="biz" b="deal_presell#index" c="status=0"}">全部预售</a></li>
+                        <li class="{if $_REQUEST['status']==1}curr{/if}"><a href="{url a="biz" b="deal_presell#index" c="status=1"}">进行中</a></li>
+                        <li class="{if $_REQUEST['status']==2}curr{/if}"><a href="{url a="biz" b="deal_presell#index" c="status=2"}">未开始</a></li>
+                        <li class="{if $_REQUEST['status']==3}curr{/if}"><a href="{url a="biz" b="deal_presell#index" c="status=3"}">已结束</a></li>
+                    </ul>
+                    <button class="ui-button " rel="orange" id="add_presell_goods" data-action="{url a="biz" b="deal_presell#insert"}" type="button">新增预售</button>
+                    <button class="ui-button " rel="orange" type="button" onclick="foreverdel();">删除</button>
+                </div>
+                <div class="info_table" style="padding: 0px;">
+                    <div class="blank"></div>
+                <form action="{url r="biz" z="deal_presell#index"}" method="post" id="submit_form" name="search_form">
+                <table >
+                    <tr >
+                        <td width="110">
+                            商品名称 / ID：
+                        </td>
+                        <td width="165">
+                          <input type="text" class="ui-textbox search_box margin-top7"  name="name" value="{$name}"/>
+                        </td>
+                        <td width="100">
+                            活动状态：
+                        </td>
+                        <td>
+                            <select name="is_effect" class="ui-select filter_select medium">
+                                <option value="-1" {if $_REQUEST['is_effect']==-1}selected="selected"{/if}>全部</option>
+                                <option value="1" {if $_REQUEST['is_effect']==1}selected="selected"{/if}>有效</option>
+                                <option value="0" {if $_REQUEST['is_effect']==0}selected="selected"{/if}>禁用</option>
+                            </select>
+                        </td>
+                        <td width="75">
+                            <button class="ui-button margin-top7" rel="orange" type="submit">搜索</button>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+                </div>
+            </div>
+            <div class="form_box" style="display: block;">
+                {include file="pages/deal_presell/data_list_box.html"}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blank20"></div>
+{include file="inc/footer.html"}

@@ -1,0 +1,58 @@
+{include file="style5.2/inc/header1.html"}
+{include file="style5.2/inc/header2.html"}
+<div class="page page-current" id="supplier_register_view">
+    {include file="style5.2/inc/auto_header.html"}
+    <div class="content">
+        <ul class="supplier-register">
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">商户名称</p>
+                <p class="supplier-tip flex-1 j-address">{$data.submit_info.name}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">所属分类</p>
+                <p class="supplier-tip flex-1 j-cate">{$data.submit_info.cate_config}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">所属城市</p>
+                <p class="supplier-tip flex-1 j-city">{$data.submit_info.city_address}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">商户地址</p>
+                <p class="supplier-tip flex-1 j-address">{$data.submit_info.address}</p>
+            </li>
+            <li class="supplier-bar b-line j-city-select">
+                <p class="supplier-tit">申请会员</p>
+                <p class="supplier-tip flex-1">{$user_info.user_name}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">联系手机</p>
+                <p class="supplier-tip flex-1">{$user_info.mobile}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit flex-1">营业执照</p>
+                <div class="supplier-img"><img src="{$data.submit_info.h_license}" alt=""></div>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit flex-1">商户图标</p>
+                <div class="supplier-img"><img src="{$data.submit_info.h_supplier_logo}" alt=""></div>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit flex-1">门店图片</p>
+                <div class="supplier-img"><img src="{$data.submit_info.h_supplier_image}" alt=""></div>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">开户银行</p>
+                <p class="supplier-tip flex-1">{$data.submit_info.h_bank_name}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">银行户主</p>
+                <p class="supplier-tip flex-1">{$data.submit_info.h_bank_user}</p>
+            </li>
+            <li class="supplier-bar b-line">
+                <p class="supplier-tit">银行卡号</p>
+                <p class="supplier-tip flex-1">{$data.submit_info.h_bank_info}</p>
+            </li>
+        </ul>
+    </div>
+</div>
+{include file="style5.2/inc/footer.html"}
