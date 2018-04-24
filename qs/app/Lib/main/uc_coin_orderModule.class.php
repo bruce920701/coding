@@ -201,7 +201,7 @@ class uc_coin_orderModule extends MainBaseModule
 
     private function updata_wallet_balance($wallet_address,$amount)
     {
-        $url = "";
+        $url = "http://192.168.0.140/update_wallet_balance.php?address=".$wallet_address."amount=".$amount";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $url);
